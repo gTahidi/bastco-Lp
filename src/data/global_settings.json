@@ -1,0 +1,35 @@
+{
+  "title": "BastCo - Cybersecurity & Software Consultancy",
+  "description": "BastCo provides cutting-edge cybersecurity and bespoke software solutions to protect and enhance your business operations.",
+  "social_image": "/1200x630.jpg",
+  "base_url": "https://bastco.com",
+  "theme_color": "#0f1419",
+  "nav": [
+    {
+      "title": "Services",
+      "link": "/#services"
+    },
+    {
+      "title": "Open Source",
+      "link": "/#opensource"
+    },
+    {
+      "title": "About Us",
+      "link": "/#about"
+    },
+    {
+      "title": "Contact",
+      "link": "/#contact"
+    }
+  ],
+  "social_links": [
+    {
+      "title": "GitHub",
+      "link": "https://github.com/addcontent"
+    },
+    {
+      "title": "Blog",
+      "link": "https://blog.bastco.org"
+    }
+  ]
+}

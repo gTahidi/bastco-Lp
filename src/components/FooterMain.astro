@@ -1,0 +1,87 @@
+---
+const { settings } = Astro.props
+---
+
+<footer class="relative @container bs-container my-24 font-semibold text-bs-foreground-dark" id="contact">
+
+  <div class="absolute inset-0 -z-10 overflow-hidden rounded-[2.5rem] opacity-35" aria-hidden="true">
+    <img src="/wallpapers/blackspike-wallpaper-04.jpg" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+    <div class="absolute inset-0 bg-gradient-to-b from-bs-surface-1/95 via-bs-surface-1/85 to-bs-surface-0"></div>
+  </div>
+
+  <!-- Wrapper -->
+  <div class="bg-bs-surface-2/80 p-8 md:p-16 rounded-[2.5rem] grid md:grid-cols-2 gap-10 lg:gap-16 border border-bs-surface-3/70 backdrop-blur">
+
+      <!-- Left col -->
+      <div class="flex flex-col gap-10 text-bs-foreground-light">
+
+        <!-- Logo -->
+        <a class="flex items-center gap-4 group" href="#top" aria-label="Back to top">
+          <div class="relative flex items-center justify-center">
+            <div class="absolute inset-0 rounded-2xl bg-bs-primary/40 blur-xl group-hover:scale-110 transition-transform"></div>
+            <img src="/content-images/logo-05.svg" alt="BastCo logo" class="relative h-14 w-auto transition-transform duration-700 group-hover:rotate-6" loading="lazy" decoding="async" />
+          </div>
+          <span class="font-display font-semibold text-2xl tracking-wide">BastCo</span>
+        </a>
+
+        <!-- CTA title -->
+        <h2 class="bs-h3 max-w-xl">Ready to secure your business?</h2>
+
+        <!-- Contact info -->
+        <div class="space-y-2 text-bs-foreground-dark">
+          <p>Email: <a href="mailto:info@bastco.com" class="text-bs-primary hover:text-bs-secondary">info@bastco.com</a></p>
+          <p>Office: 117 Bastion Row, Austin TX</p>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-bs-secondary/80">
+          <span>Follow</span>
+          <div class="flex gap-3">
+            { settings.social_links.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+              <a href={ item.link } target="_blank" rel="noopener noreferrer" class="hover:text-bs-secondary">{ item.title }</a>
+            )}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right col -->
+      <div class="grid sm:grid-cols-2 gap-10 text-sm [&_a]:transition-colors [&_a]:duration-150">
+
+        <!-- Nav -->
+        <nav class="flex flex-col gap-2">
+
+          <h4 class="text-bs-foreground-light mb-2 uppercase tracking-[0.3em] text-xs">Links</h4>
+
+          { settings.nav.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+
+            <a href={ item.link } class="hover:text-bs-foreground-light">
+              { item.title }
+            </a>
+
+          )}
+
+        </nav>
+
+        <!-- Theme preview -->
+        <figure class="relative overflow-hidden rounded-2xl border border-bs-surface-3/60">
+          <img src="/theme-preview/blackspike-theme-5.jpg" alt="BastCo interface preview" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          <figcaption class="absolute inset-x-0 bottom-0 p-3 bg-bs-surface-1/80 text-xs uppercase tracking-[0.3em] text-center text-bs-secondary/80">Blackspike Theme</figcaption>
+        </figure>
+
+      </div>
+
+  </div>
+
+  <!-- Colophon -->
+  <aside class="bs-container">
+
+      <div class="flex gap-4 justify-center pt-16 md:pt-24 text-xs text-bs-foreground-dark/80">
+
+        <!-- Copyright/Date -->
+        <p>&copy; 2025 BastCo LLC. All rights reserved.</p>
+
+      </div>
+
+  </aside>
+
+</footer>

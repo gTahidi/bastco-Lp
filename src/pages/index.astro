@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+import HeroSection from "../components/HeroSection.astro"
+import ServicesSection from "../components/ServicesSection.astro"
+import OpenSourceSection from "../components/OpenSourceSection.astro"
+import AboutSection from "../components/AboutSection.astro"
+import ContactSection from "../components/ContactSection.astro"
+
+import global_settings from "../data/global_settings.json"
+import home from "../data/home.json"
+import services from "../data/services.json"
+import opensource from "../data/opensource.json"
+
+---
+
+<Layout title={ global_settings.title }>
+
+  <HeroSection
+    title={ home.hero_title }
+    content={ home.hero_content }
+  />
+
+  <ServicesSection
+    services={ services }
+    title={ home.services_title }
+  />
+
+  <OpenSourceSection
+    repos={ opensource }
+    title={ home.opensource_title }
+  />
+
+  <AboutSection
+    title={ home.about_title }
+  />
+
+  <ContactSection />
+
+</Layout>

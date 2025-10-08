@@ -1,0 +1,51 @@
+---
+const { title } = Astro.props
+---
+
+<section id="about" class="relative py-24">
+
+  <!-- Background accent -->
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <img src="/wallpapers/blackspike-wallpaper-03.jpg" alt="" class="w-full h-full object-cover opacity-10" loading="lazy" decoding="async" />
+    <div class="absolute inset-0 bg-gradient-to-b from-bs-surface-1 via-bs-surface-1/95 to-bs-surface-0"></div>
+  </div>
+
+  <div class="bs-container relative grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-center">
+
+    <!-- Portrait -->
+    <figure class="relative order-last lg:order-first">
+      <div class="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/15 blur-3xl" aria-hidden="true"></div>
+      <div class="relative overflow-hidden rounded-[2rem] border border-bs-surface-3/70 bg-bs-surface-2/50 backdrop-blur">
+        <img src="/content-images/quote-man.avif" alt="BastCo founder speaking at a cybersecurity conference" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-bs-surface-1 via-transparent"></div>
+      </div>
+    </figure>
+
+    <!-- Copy -->
+    <div class="space-y-6">
+      <div class="space-y-3">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">
+          Our Story
+        </span>
+        <h2 class="bs-h2">{ title }</h2>
+      </div>
+      <div class="bg-bs-surface-2/70 border border-bs-surface-3/60 rounded-2xl p-8 md:p-10 shadow-lg shadow-black/20 space-y-4">
+        <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
+          Founded by leading experts in Cybersecurity & software engineering, We are dedicated to providing innovative solutions. We believe in building strong relationships with our clients, founded on trust and a deep understanding of their challenges. Our mission is to empower businesses to thrive securely in a digital-first world.
+        </p>
+        <p class="bs-body-text text-bs-foreground-dark/90 leading-relaxed">
+          From red-team simulations to enterprise DevSecOps rollouts, our specialists operate as an embedded extension of your organization—ensuring security is an enabler, not a bottleneck.
+        </p>
+      </div>
+      <div class="flex items-center gap-4 text-sm text-bs-foreground-dark">
+        <img src="/content-images/logo-06.svg" alt="BastCo badge" class="h-10 w-auto" loading="lazy" decoding="async" />
+        <div>
+          <p class="font-semibold text-bs-foreground-light">Headquartered in Texas & Nairobi, working globally</p>
+          <p>Trusted partners for finance, healthcare, and public sector teams.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>

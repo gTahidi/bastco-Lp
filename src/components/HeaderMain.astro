@@ -1,0 +1,48 @@
+---
+const { settings } = Astro.props
+---
+
+<header class="wrapper relative sticky top-0 z-40 font-semibold border-b border-bs-surface-2/70 bg-gradient-to-r from-bs-surface-0/95 via-bs-surface-0/85 to-bs-surface-1/85 backdrop-blur-xl">
+
+  <div class="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 bg-[radial-gradient(120%_120%_at_15%_-40%,rgba(0,174,239,0.35),transparent)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(90%_90%_at_85%_-20%,rgba(74,222,128,0.18),transparent)]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bs-surface-0/40"></div>
+  </div>
+
+  <!-- Wrapper -->
+  <div class="bs-container py-5 flex justify-between items-center gap-6">
+
+    <!-- Logo -->
+    <a class="flex items-center gap-4 group" href="/" aria-label={ settings.title + ' - Home' }>
+      <span class="relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-bs-primary/80 via-bs-secondary/60 to-white/30 shadow-[0_12px_30px_rgba(0,174,239,0.35)] transition-transform duration-500 group-hover:scale-105">
+        <span class="absolute h-2.5 w-6 rounded-full bg-white/75 -rotate-[14deg] translate-y-1"></span>
+        <span class="absolute h-2.5 w-6 rounded-full bg-white/55 rotate-[18deg] -translate-y-1.5"></span>
+      </span>
+      <span class="font-display text-2xl font-semibold italic tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-r from-white via-bs-secondary to-bs-primary drop-shadow-[0_4px_18px_rgba(0,174,239,0.45)]">
+        BastCo
+      </span>
+    </a>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-2">
+
+      <!-- Links -->
+      { settings.nav.map( item =>
+
+        <a class="bs-btn !bg-transparent !border-transparent text-sm tracking-wide before:translate-y-full hover:before:translate-y-0" href={item.link}>
+          { item.title }
+        </a>
+
+      )}
+
+    </nav>
+
+    <!-- CTA -->
+    <a href="#contact" class="min-w-32 bs-btn bs-btn-primary">
+      Get Started
+    </a>
+
+  </div>
+
+</header>

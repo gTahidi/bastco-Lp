@@ -1,0 +1,108 @@
+---
+const { title, content } = Astro.props
+
+const accentLogos = [
+  "/content-images/logo-03.svg",
+  "/content-images/logo-07.svg",
+  "/content-images/logo-10.svg",
+]
+
+const stats = [
+  {
+    value: "120+",
+    label: "Critical environments",
+    detail: "Secured endpoints, workloads, and identities we orchestrate daily.",
+  },
+  {
+    value: "98%",
+    label: "Threats neutralized",
+    detail: "Detected and contained before customer impact in the last 12 months.",
+  },
+  {
+    value: "15 min",
+    label: "Average response",
+    detail: "Round-the-clock incident handling by senior responders.",
+  },
+]
+---
+
+<section class="relative overflow-hidden py-20 sm:py-28">
+
+  <!-- Background wash -->
+  <div class="absolute inset-x-0 -top-40 h-[32rem] opacity-40 blur-3xl pointer-events-none" aria-hidden="true">
+    <img src="/content-images/blackspike-wallpaper-02.avif" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+  </div>
+
+  <!-- Layout -->
+  <div class="bs-container relative grid items-center gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+
+    <!-- Content -->
+    <div class="flex flex-col gap-6 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+
+      <span class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold tracking-[0.45em] uppercase text-bs-secondary/80">
+        <span class="inline-block w-2 h-2 rounded-full bg-bs-secondary"></span>
+        Trusted Cybersecurity Partners
+      </span>
+
+      <h1 class="bs-h1" set:html={ title } />
+
+      <div class="bs-body-text xl:text-xl flex flex-col gap-4 text-bs-foreground-dark" set:html={ content } />
+
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 sm:pt-4">
+        <a href="#contact" class="bs-btn bs-btn-primary px-10">
+          Get a Free Consultation
+        </a>
+        <p class="bs-body-text text-sm text-bs-foreground-dark/80 max-w-xs">
+          Already know what you need? Start a conversation and we will tailor an engagement for your team in under 48 hours.
+        </p>
+      </div>
+
+      <!-- Accent logos -->
+      <div class="hidden sm:flex items-center gap-6 pt-8 opacity-70">
+        {accentLogos.map((logo) => (
+          <img src={logo} alt="Client logo" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
+        ))}
+      </div>
+
+    </div>
+
+    <!-- Hero highlights -->
+    <div class="relative flex flex-col gap-6">
+      <div class="absolute -inset-6 bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/15 rounded-[2.5rem] blur-3xl" aria-hidden="true"></div>
+      <div class="relative overflow-hidden rounded-[2.25rem] border border-bs-surface-3/70 bg-bs-surface-2/70 backdrop-blur shadow-[0_35px_80px_rgba(0,0,0,0.35)]">
+        <div class="grid gap-6 p-8 md:p-10">
+          <header class="space-y-2">
+            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-bs-secondary/90">Active Defense</p>
+            <h3 class="bs-h3 text-bs-foreground-light">Managed detection &amp; response built for regulated teams.</h3>
+          </header>
+          <ul class="space-y-4 text-left">
+            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-primary"></span>
+              <span>Unified telemetry pipeline instrumented across cloud, application, and identity surfaces.</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-secondary"></span>
+              <span>Automation-first runbooks that shrink mean-time-to-contain and preserve audit evidence.</span>
+            </li>
+            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-accent"></span>
+              <span>Embedded specialists who continuously harden your posture through threat-led testing.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="relative grid gap-4 sm:grid-cols-3">
+        {stats.map((stat) => (
+          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 px-5 py-6 text-left shadow-[0_14px_30px_rgba(0,0,0,0.25)]">
+            <p class="text-2xl font-semibold text-bs-foreground-light">{ stat.value }</p>
+            <p class="mt-1 text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">{ stat.label }</p>
+            <p class="mt-3 text-xs text-bs-foreground-dark leading-relaxed">{ stat.detail }</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+</section>

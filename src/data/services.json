@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Cybersecurity Solutions",
+    "description": "Comprehensive security assessments, penetration testing, and threat mitigation to safeguard your digital assets from modern threats.",
+    "icon": "shield"
+  },
+  {
+    "title": "Custom Software Development",
+    "description": "Tailored software solutions designed to meet your unique business needs, from web applications to enterprise-level systems.",
+    "icon": "code"
+  },
+  {
+    "title": "Cloud Security & DevOps",
+    "description": "Secure and streamline your cloud infrastructure with our expert DevOps and cloud security services.",
+    "icon": "cloud"
+  },
+  {
+    "title": "Security Audits & Compliance",
+    "description": "Ensure your organization meets industry standards and regulations with our thorough security audits and compliance services.",
+    "icon": "check"
+  }
+]

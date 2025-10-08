@@ -1,0 +1,17 @@
+[
+  {
+    "title": "nuclei-mcp",
+    "description": "An MCP server for the Nuclei vulnerability scanner, enabling programmatic security testing.",
+    "url": "https://github.com/addcontent/nuclei-mcp"
+  },
+  {
+    "title": "sketch",
+    "description": "An automation framework for pentesting powered by LLMs.",
+    "url": "https://github.com/addcontent/sketch"
+  },
+  {
+    "title": "CVE-Lens",
+    "description": "A web-based tool for visualizing and analyzing CVE data to identify trends and patterns.",
+    "url": "https://github.com/addcontent/CVE-Lens"
+  }
+]

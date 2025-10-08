@@ -1,0 +1,64 @@
+---
+const { services, title } = Astro.props
+
+const iconMap: Record<string, string> = {
+  shield: "/content-images/logo-01.svg",
+  code: "/content-images/logo-02.svg",
+  cloud: "/content-images/logo-03.svg",
+  check: "/content-images/logo-04.svg",
+}
+
+const cardBackgrounds = [
+  "/content-images/blackspike-wallpaper-01.avif",
+  "/content-images/blackspike-wallpaper-02.avif",
+  "/content-images/blackspike-wallpaper-03.avif",
+  "/content-images/blackspike-wallpaper-04.avif",
+]
+---
+
+<section id="services" class="bs-container bs-mt-lg">
+
+  <!-- Title -->
+  <div class="text-center space-y-4 mb-12">
+    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">
+      Services
+    </span>
+    <h2 class="bs-h2 text-center">{ title }</h2>
+    <p class="bs-body-text text-bs-foreground-dark max-w-3xl mx-auto">Security-first engineering, tailored to the realities of modern infrastructure.</p>
+  </div>
+
+  <!-- Service Cards -->
+  <div class="grid md:grid-cols-2 gap-8">
+
+    { services.map((service, index) => {
+      const icon = iconMap[service.icon] ?? "/content-images/logo-05.svg"
+      const background = cardBackgrounds[index % cardBackgrounds.length]
+
+      return (
+        <article class="relative overflow-hidden rounded-2xl border border-bs-surface-3/80 bg-bs-surface-2/70 backdrop-blur-sm transition transform-gpu duration-500 hover:-translate-y-2 hover:border-bs-primary/60">
+          <div class="absolute inset-0 opacity-15" aria-hidden="true">
+            <img src={background} alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-br from-bs-surface-1/90 via-bs-surface-1/60 to-transparent"></div>
+          </div>
+
+          <div class="relative p-8 flex flex-col gap-5">
+            <div class="flex items-center gap-4">
+              <div class="p-3 rounded-xl bg-bs-surface-1/80 ring-1 ring-bs-primary/30">
+                <img src={icon} alt="" class="w-10 h-10 object-contain" loading="lazy" decoding="async" />
+              </div>
+              <h3 class="bs-h3 text-bs-foreground-light">{ service.title }</h3>
+            </div>
+
+            <p class="bs-body-text text-bs-foreground-dark text-base leading-relaxed">
+              { service.description }
+            </p>
+
+            <span class="text-sm font-semibold text-bs-primary/80">Learn more →</span>
+          </div>
+        </article>
+      )
+    })}
+
+  </div>
+
+</section>

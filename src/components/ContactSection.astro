@@ -1,0 +1,137 @@
+---
+---
+
+<section id="contact" class="relative py-24">
+
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <img src="/theme-preview/blackspike-theme-4.jpg" alt="" class="w-full h-full object-cover opacity-20" loading="lazy" decoding="async" />
+    <div class="absolute inset-0 bg-gradient-to-b from-bs-surface-1 via-bs-surface-1/95 to-bs-surface-0"></div>
+  </div>
+
+  <div class="bs-container relative">
+
+    <!-- Header -->
+    <div class="text-center mb-12 space-y-4">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">
+        Contact
+      </span>
+      <h2 class="bs-h2">Contact Us</h2>
+      <p class="bs-body-text text-lg text-bs-foreground-dark max-w-2xl mx-auto">Ready to secure and elevate your business? Reach out to us today.</p>
+    </div>
+
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.1fr)] items-stretch">
+
+      <!-- Contact details -->
+      <div class="bg-bs-surface-2/70 border border-bs-surface-3/60 rounded-2xl p-8 md:p-10 flex flex-col gap-8 shadow-xl shadow-black/25">
+        <header class="space-y-2">
+          <p class="text-xs font-semibold uppercase tracking-[0.38em] text-bs-secondary/80">Security Operations Desk</p>
+          <h3 class="bs-h3 text-bs-foreground-light">We mobilize senior responders in minutes, not days.</h3>
+        </header>
+
+        <ul class="space-y-4 text-sm text-bs-foreground-dark leading-relaxed">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-primary"></span>
+            <span>Dedicated incident bridge available 24/7 for active engagements and retainer clients.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-secondary"></span>
+            <span>Advisory pods covering threat intelligence, secure AI adoption, and regulated cloud refactoring.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-accent"></span>
+            <span>Engagements kick off with a posture audit so you see quick wins within the first 30 days.</span>
+          </li>
+        </ul>
+
+        <dl class="space-y-3 text-bs-foreground-dark">
+          <div>
+            <dt class="text-xs uppercase tracking-[0.3em] text-bs-secondary/80">Email</dt>
+            <dd><a href="mailto:info@bastco.com" class="text-bs-primary hover:text-bs-secondary transition-colors">info@bastco.com</a></dd>
+          </div>
+          <div>
+            <dt class="text-xs uppercase tracking-[0.3em] text-bs-secondary/80">Office</dt>
+            <dd class="leading-relaxed">117 Bastion Row<br />Austin, TX 73301</dd>
+          </div>
+        </dl>
+
+        <div class="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-bs-secondary/80">
+          <span>Follow</span>
+          <div class="flex gap-3">
+            <a href="https://github.com/addcontent" target="_blank" rel="noopener noreferrer" class="hover:text-bs-secondary">GitHub</a>
+            <a href="https://blog.bastco.org" target="_blank" rel="noopener noreferrer" class="hover:text-bs-secondary">Blog</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="relative overflow-hidden rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/80 backdrop-blur">
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/25" aria-hidden="true"></div>
+        <form class="relative flex flex-col gap-6 p-8 md:p-10">
+          <p class="text-sm text-bs-foreground-dark/90 leading-relaxed">
+            Tell us who we’ll be speaking with and what outcome you’re aiming for. We’ll bring the right specialists to your session.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Your Name</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
+                placeholder="Jordan Carter"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Work Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
+                placeholder="jordan@company.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="initiative" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Focus Area</label>
+            <select
+              id="initiative"
+              name="initiative"
+              class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
+            >
+              <option value="" selected>Choose the initiative that best fits</option>
+              <option value="mdr">Managed Detection &amp; Response</option>
+              <option value="appsec">Product / Application Security</option>
+              <option value="cloud">Cloud Security &amp; DevSecOps</option>
+              <option value="advisory">Security Architecture Advisory</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Context (optional)</label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4"
+              class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light resize-none"
+              placeholder="Share any scope, timeline, or compliance drivers..."
+            ></textarea>
+          </div>
+
+          <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn bs-btn-primary self-start px-10">
+            Book a call on Cal.com
+          </a>
+
+          <p class="text-xs text-bs-foreground-dark/70">Prefer email? Reach us directly at <a class="text-bs-primary hover:text-bs-secondary" href="mailto:info@bastco.com">info@bastco.com</a>.</p>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

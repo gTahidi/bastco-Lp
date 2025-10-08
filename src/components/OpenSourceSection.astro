@@ -1,0 +1,64 @@
+---
+const { repos, title } = Astro.props
+
+const repoImages = [
+  "/theme-preview/blackspike-theme-1.jpg",
+  "/theme-preview/blackspike-theme-2.jpg",
+  "/theme-preview/blackspike-theme-3.jpg",
+]
+---
+
+<section id="opensource" class="bs-container bs-mt-lg">
+
+  <!-- Title -->
+  <div class="text-center space-y-4 mb-12">
+    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">
+      Open Source
+    </span>
+    <h2 class="bs-h2 text-center">{ title }</h2>
+    <p class="bs-body-text text-bs-foreground-dark max-w-3xl mx-auto">We believe secure software should be open, observable, and resilient. Explore a few highlights from our GitHub lab.</p>
+  </div>
+
+  <!-- Repo Cards -->
+  <div class="grid md:grid-cols-3 gap-6">
+
+    { repos.map((repo, index) => {
+      const screenshot = repoImages[index % repoImages.length]
+
+      return (
+        <a 
+          href={ repo.url } 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="group relative overflow-hidden rounded-2xl border border-bs-surface-3/70 bg-bs-surface-2/70 backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2"
+        >
+          <div class="absolute inset-0 opacity-20" aria-hidden="true">
+            <img src={screenshot} alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-b from-bs-surface-1/90 via-bs-surface-1/60 to-bs-surface-1/90"></div>
+          </div>
+
+          <div class="relative p-8 flex flex-col gap-5">
+            <div class="flex items-center gap-3">
+              <div class="p-3 rounded-full bg-bs-surface-1/70 ring-1 ring-bs-primary/40">
+                <img src="/content-images/logo-09.svg" alt="Open source badge" class="h-8 w-8 object-contain" loading="lazy" decoding="async" />
+              </div>
+              <h3 class="bs-h3 text-bs-foreground-light group-hover:text-bs-secondary transition-colors">{ repo.title }</h3>
+            </div>
+
+            <p class="bs-body-text text-bs-foreground-dark">{ repo.description }</p>
+
+            <span class="inline-flex items-center gap-2 text-sm font-semibold text-bs-primary group-hover:text-bs-secondary transition-colors">
+              View on GitHub
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25h13.5v13.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 16.5 18.75 5.25" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      )
+    })}
+
+  </div>
+
+</section>
