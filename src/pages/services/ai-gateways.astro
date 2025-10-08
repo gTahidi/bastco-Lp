@@ -1,0 +1,80 @@
+---
+import Layout from "../../layouts/Layout.astro"
+
+import global_settings from "../../data/global_settings.json"
+import services from "../../data/services.json"
+
+const service = services.find((item) => item.slug === "ai-gateways")
+if (!service) {
+  throw new Error("AI Gateways service not found. Ensure services.json contains the entry.")
+}
+
+const pageTitle = `${service.title} • ${global_settings.title}`
+const pageDescription = service.description
+const highlights: string[] = service.highlights ?? []
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <section class="bs-section">
+    <div class="bs-container grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+      <div class="space-y-5">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">Applied AI</span>
+        <h1 class="bs-h1 text-balance">{ service.title }</h1>
+        <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
+          We deploy private AI gateways that keep data inside your boundary while routing each request to the best model.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {highlights.map((item) => (
+            <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-4 text-sm text-bs-foreground-dark flex items-start gap-3">
+              <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+              <span>{ item }</span>
+            </div>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/#contact" class="bs-btn bs-btn-primary">Discuss an AI rollout</a>
+          <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn">Book an architecture review</a>
+        </div>
+      </div>
+      <aside class="relative overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/80 backdrop-blur">
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/25" aria-hidden="true"></div>
+        <div class="relative p-8 space-y-5">
+          <h2 class="bs-h3 text-bs-foreground-light">Gateway blueprint</h2>
+          <ul class="space-y-3 text-sm text-bs-foreground-dark leading-relaxed">
+            <li>
+              <strong class="text-bs-foreground-light">Multi-model orchestration</strong> — route prompts across open, closed, and self-hosted LLMs with latency and cost policies.
+            </li>
+            <li>
+              <strong class="text-bs-foreground-light">Data privacy &amp; governance</strong> — redact, tokenize, and tag requests before they leave your boundary.
+            </li>
+            <li>
+              <strong class="text-bs-foreground-light">Observability &amp; billing</strong> — per-tenant telemetry, guardrails, and cost tracking ready for audits.
+            </li>
+          </ul>
+          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 p-5 text-sm text-bs-foreground-dark space-y-2">
+            <p class="font-semibold text-bs-foreground-light uppercase tracking-[0.35em] text-xs">Deployment targets</p>
+            <p>Kubernetes, Nomad, serverless runtimes, and bare-metal GPU clusters with pooling and autoscaling.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bs-section">
+    <div class="bs-container grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start">
+      <div class="space-y-3">
+        <h2 class="bs-h3 text-bs-foreground-light">Inference options</h2>
+        <p class="bs-body-text text-bs-foreground-dark">
+          Run the gateway with our managed fleet or inside your own environment. We support GGUF, ONNX, TensorRT, and native GPU formats.
+        </p>
+        <ul class="space-y-2 text-sm text-bs-foreground-dark">
+          <li>Shared or dedicated GPU pools with token-aware autoscaling.</li>
+          <li>Regional routing and data residency controls per tenant.</li>
+          <li>Fine-tuned models, retrieval augmentation, and eval harnesses.</li>
+        </ul>
+      </div>
+        
+      </div>
+    </div>
+  </section>
+</Layout>

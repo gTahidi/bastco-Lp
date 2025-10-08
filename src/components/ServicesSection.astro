@@ -6,6 +6,7 @@ const iconMap: Record<string, string> = {
   code: "/content-images/logo-02.svg",
   cloud: "/content-images/logo-03.svg",
   check: "/content-images/logo-04.svg",
+  ai: "/content-images/logo-08.svg",
 }
 
 const cardBackgrounds = [
@@ -41,7 +42,7 @@ const cardBackgrounds = [
             <div class="absolute inset-0 bg-gradient-to-br from-bs-surface-1/90 via-bs-surface-1/60 to-transparent"></div>
           </div>
 
-          <div class="relative p-8 flex flex-col gap-5">
+          <div class="relative p-8 flex flex-col gap-6">
             <div class="flex items-center gap-4">
               <div class="p-3 rounded-xl bg-bs-surface-1/80 ring-1 ring-bs-primary/30">
                 <img src={icon} alt="" class="w-10 h-10 object-contain" loading="lazy" decoding="async" />
@@ -53,7 +54,26 @@ const cardBackgrounds = [
               { service.description }
             </p>
 
-            <span class="text-sm font-semibold text-bs-primary/80">Learn more →</span>
+            {service.highlights && (
+              <ul class="flex flex-col gap-2 text-sm text-bs-foreground-dark/90">
+                {service.highlights.map((point) => (
+                  <li class="flex items-start gap-2">
+                    <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary/70"></span>
+                    <span>{ point }</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <a href={`/services/${service.slug}`}
+               class="inline-flex items-center gap-2 text-sm font-semibold text-bs-primary/80 hover:text-bs-secondary transition-colors"
+            >
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25h13.5v13.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 16.5 18.75 5.25" />
+              </svg>
+            </a>
           </div>
         </article>
       )

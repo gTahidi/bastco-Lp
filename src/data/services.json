@@ -1,22 +1,46 @@
 [
   {
-    "title": "Cybersecurity Solutions",
-    "description": "Comprehensive security assessments, penetration testing, and threat mitigation to safeguard your digital assets from modern threats.",
-    "icon": "shield"
+    "title": "Enterprise Software Development",
+    "slug": "enterprise-software",
+    "icon": "code",
+    "description": "Build resilient enterprise platforms with ATS, payroll, and ERP workflows tailored on Frappe/ERPNext.",
+    "highlights": [
+      "Applicant tracking and onboarding pipelines",
+      "Payroll, time and benefits automation",
+      "Custom modules layered on ERPNext & Frappe"
+    ]
   },
   {
-    "title": "Custom Software Development",
-    "description": "Tailored software solutions designed to meet your unique business needs, from web applications to enterprise-level systems.",
-    "icon": "code"
+    "title": "Cybersecurity Consulting",
+    "slug": "cybersecurity-consulting",
+    "icon": "shield",
+    "description": "Penetration testing, SIEM deployment, and compliance programs engineered for regulated teams.",
+    "highlights": [
+      "Offensive testing & purple-team simulations",
+      "SIEM & XDR design with runbooks",
+      "Regulatory audits and remediation"
+    ]
   },
   {
-    "title": "Cloud Security & DevOps",
-    "description": "Secure and streamline your cloud infrastructure with our expert DevOps and cloud security services.",
-    "icon": "cloud"
+    "title": "Infrastructure Automation & Security",
+    "slug": "infrastructure-automation",
+    "icon": "cloud",
+    "description": "Operate secure, observable cloud estates with DevSecOps automation and SRE-grade tooling.",
+    "highlights": [
+      "IaC pipelines across AWS, Azure, GCP",
+      "Kubernetes hardening & platform engineering",
+      "Cost, performance, and policy guardrails"
+    ]
   },
   {
-    "title": "Security Audits & Compliance",
-    "description": "Ensure your organization meets industry standards and regulations with our thorough security audits and compliance services.",
-    "icon": "check"
+    "title": "AI Gateways & LLM Inference",
+    "slug": "ai-gateways",
+    "icon": "ai",
+    "description": "Deploy sovereign AI gateways, multi-model routing, and affordable large-language-model inference.",
+    "highlights": [
+      "Tenant-aware AI gateway design",
+      "Hybrid inference across GPU & CPU farms",
+      "Realtime chat endpoint at c.bascto.org"
+    ]
   }
 ]
