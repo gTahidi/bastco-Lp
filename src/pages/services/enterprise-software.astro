@@ -37,18 +37,18 @@ const offerings = [
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="bs-section">
-    <div class="bs-container grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
-      <div class="space-y-8 lg:pr-12">
+    <div class="bs-container grid gap-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+      <div class="space-y-10 lg:space-y-12 lg:pr-16">
         <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">Enterprise Delivery</span>
-        <div class="space-y-5 max-w-3xl">
+        <div class="space-y-6 max-w-2xl">
           <h1 class="bs-h1 text-balance">{ service.title }</h1>
           <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
             We tailor ERPNext on Frappe so hiring, payroll, and operations live in one platform that matches your policies.
           </p>
         </div>
         {highlights.length > 0 && (
-          <div class="max-w-2xl">
-            <ul class="grid gap-4 md:grid-cols-2">
+          <div class="max-w-xl">
+            <ul class="grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
               {highlights.map((item) => (
                 <li class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 text-sm text-bs-foreground-dark flex items-start gap-3">
                   <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
@@ -58,9 +58,9 @@ const offerings = [
             </ul>
           </div>
         )}
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-4">
           <a href="/#contact" class="bs-btn bs-btn-primary">Talk to implementation</a>
-          <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn">Book a scoping call</a>
+          <a href="https://cal.com/bastco" target="_blank" rel="noopener noreferrer" class="bs-btn">Book a scoping call</a>
         </div>
       </div>
       <aside class="relative overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/80 backdrop-blur">

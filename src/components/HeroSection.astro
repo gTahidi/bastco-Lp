@@ -11,17 +11,14 @@ const stats = [
   {
     value: "120+",
     label: "Critical environments",
-    detail: "Secured endpoints, workloads, and identities we orchestrate daily.",
   },
   {
     value: "98%",
     label: "Threats neutralized",
-    detail: "Detected and contained before customer impact in the last 12 months.",
   },
   {
     value: "15 min",
     label: "Average response",
-    detail: "Round-the-clock incident handling by senior responders.",
   },
 ]
 ---
@@ -37,31 +34,30 @@ const stats = [
   <div class="bs-container relative grid items-center gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
 
     <!-- Content -->
-    <div class="flex flex-col gap-6 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+    <div class="flex flex-col gap-8 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
 
       <span class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold tracking-[0.45em] uppercase text-bs-secondary/80">
         <span class="inline-block w-2 h-2 rounded-full bg-bs-secondary"></span>
-        Trusted Cybersecurity Partners
+        Your Trusted Cybersecurity & Software Partners
       </span>
 
       <h1 class="bs-h1" set:html={ title } />
 
       <div class="bs-body-text xl:text-xl flex flex-col gap-4 text-bs-foreground-dark" set:html={ content } />
 
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 sm:pt-4">
-        <a href="#contact" class="bs-btn bs-btn-primary px-10">
-          Get a Free Consultation
-        </a>
-        <p class="bs-body-text text-sm text-bs-foreground-dark/80 max-w-xs">
-          Already know what you need? Start a conversation and we will tailor an engagement for your team in under 48 hours.
-        </p>
-      </div>
+      <div class="flex flex-col items-center lg:items-start gap-8 sm:gap-10">
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 sm:pt-2">
+          <a href="#contact" class="bs-btn bs-btn-primary px-10">
+            Get a Free Consultation
+          </a>
+        </div>
 
-      <!-- Accent logos -->
-      <div class="hidden sm:flex items-center gap-6 pt-8 opacity-70">
-        {accentLogos.map((logo) => (
-          <img src={logo} alt="Client logo" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
-        ))}
+        <!-- Accent logos -->
+        <div class="hidden sm:flex w-full items-center justify-center lg:justify-start gap-8 opacity-70">
+          {accentLogos.map((logo) => (
+            <img src={logo} alt="Client logo" class="h-9 w-auto object-contain" loading="lazy" decoding="async" />
+          ))}
+        </div>
       </div>
 
     </div>
@@ -97,7 +93,6 @@ const stats = [
           <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 px-5 py-6 text-left shadow-[0_14px_30px_rgba(0,0,0,0.25)]">
             <p class="text-2xl font-semibold text-bs-foreground-light">{ stat.value }</p>
             <p class="mt-1 text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">{ stat.label }</p>
-            <p class="mt-3 text-xs text-bs-foreground-dark leading-relaxed">{ stat.detail }</p>
           </div>
         ))}
       </div>
