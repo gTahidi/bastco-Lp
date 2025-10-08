@@ -12,78 +12,96 @@ if (!service) {
 const pageTitle = `${service.title} • ${global_settings.title}`
 const pageDescription = service.description
 const highlights: string[] = service.highlights ?? []
+
+const blueprint = [
+  "ATS & onboarding flows tied to HR and finance",
+  "Payroll and compliance rules for local markets",
+  "Frappe extensions packaged for safe upgrades",
+]
+
+const offerings = [
+  {
+    title: "Implementation sprint",
+    points: ["Blueprint & rollout", "Team enablement"],
+  },
+  {
+    title: "Managed platform",
+    points: ["Upgrades & support", "Release monitoring"],
+  },
+  {
+    title: "Co-build squad",
+    points: ["BastCo engineers embedded", "Shared backlog delivery"],
+  },
+]
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="bs-section">
-    <div class="bs-container grid gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
-      <div class="space-y-6">
+    <div class="bs-container grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
+      <div class="space-y-8 lg:pr-12">
         <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">Enterprise Delivery</span>
-        <h1 class="bs-h1 text-balance">{ service.title }</h1>
-        <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
-          We configure ERPNext on Frappe so teams get hiring, payroll, and operations tooling that actually fits their policies.
-          Integrations and approvals ship ready for audit, without slowing day-to-day work.
-        </p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {highlights.map((item) => (
-            <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-4 text-sm text-bs-foreground-dark flex items-start gap-3">
-              <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
-              <span>{ item }</span>
-            </div>
-          ))}
+        <div class="space-y-5 max-w-3xl">
+          <h1 class="bs-h1 text-balance">{ service.title }</h1>
+          <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
+            We tailor ERPNext on Frappe so hiring, payroll, and operations live in one platform that matches your policies.
+          </p>
         </div>
+        {highlights.length > 0 && (
+          <div class="max-w-2xl">
+            <ul class="grid gap-4 md:grid-cols-2">
+              {highlights.map((item) => (
+                <li class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 text-sm text-bs-foreground-dark flex items-start gap-3">
+                  <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                  <span>{ item }</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div class="flex flex-wrap gap-3">
           <a href="/#contact" class="bs-btn bs-btn-primary">Talk to implementation</a>
           <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn">Book a scoping call</a>
         </div>
       </div>
       <aside class="relative overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/80 backdrop-blur">
-        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/15 via-transparent to-bs-secondary/20" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/20" aria-hidden="true"></div>
         <div class="relative p-8 space-y-5">
-          <h2 class="bs-h3 text-bs-foreground-light">What we deliver</h2>
+          <h2 class="bs-h3 text-bs-foreground-light">Platform blueprint</h2>
           <ul class="space-y-3 text-sm text-bs-foreground-dark leading-relaxed">
-            <li>
-              <strong class="text-bs-foreground-light">ATS &amp; onboarding</strong> — candidate portals, interviews, and approvals linked to HR and finance.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">Payroll &amp; compliance</strong> — regional rules, filings, and employee self-service in one place.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">Frappe extensions</strong> — DocTypes, APIs, and SSO packaged for safe upgrades.
-            </li>
+            {blueprint.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                <span>{ item }</span>
+              </li>
+            ))}
           </ul>
-          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 p-5 text-sm text-bs-foreground-dark space-y-2">
-            <p class="font-semibold text-bs-foreground-light uppercase tracking-[0.35em] text-xs">Rollout timeline</p>
-            <p>Blueprint (2 weeks) → MVP (6 weeks) → Cut-over &amp; enablement (2 weeks) → managed support.</p>
-          </div>
         </div>
       </aside>
     </div>
   </section>
 
   <section class="bs-section">
-    <div class="bs-container grid gap-8 md:grid-cols-2">
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Why BastCo</h2>
-        <p class="bs-body-text text-bs-foreground-dark">
-          Certified ERPNext engineers deliver modular builds that stay upgrade-safe and fast to support.
+    <div class="bs-container space-y-10">
+      <div class="max-w-2xl space-y-3">
+        <h2 class="bs-h3 text-bs-foreground-light">Engagement models</h2>
+        <p class="bs-body-text text-bs-foreground-dark leading-relaxed">
+          We combine packaged accelerators with co-build teams so your ERP foundation rolls out quickly and keeps improving.
         </p>
-        <ul class="space-y-2 text-sm text-bs-foreground-dark">
-          <li>Secure integrations with payroll, CRM, and analytics tools.</li>
-          <li>Release pipelines tested against your compliance rules.</li>
-          <li>Dashboards for HR, finance, and leadership with precise access.</li>
-        </ul>
       </div>
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Engagement options</h2>
-        <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 space-y-2 text-sm text-bs-foreground-dark">
-          <p><strong class="text-bs-foreground-light">Implementation sprint</strong> — focused rollout with handover.</p>
-          <p><strong class="text-bs-foreground-light">Managed platform</strong> — we run upgrades and support.</p>
-          <p><strong class="text-bs-foreground-light">Co-build squad</strong> — BastCo embeds with your team.</p>
-        </div>
-        <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn bs-btn-primary w-full sm:w-auto">
-          Schedule a discovery session
-        </a>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {offerings.map((card) => (
+          <article class="h-full rounded-2xl border border-bs-surface-3/70 bg-bs-surface-2/70 p-6 space-y-3">
+            <h3 class="text-base font-semibold text-bs-foreground-light">{ card.title }</h3>
+            <ul class="space-y-2 text-sm text-bs-foreground-dark">
+              {card.points.map((point) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-2 inline-flex h-1.5 w-1.5 rounded-full bg-bs-primary"></span>
+                  <span>{ point }</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </div>
   </section>

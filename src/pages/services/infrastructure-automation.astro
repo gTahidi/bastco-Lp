@@ -12,74 +12,96 @@ if (!service) {
 const pageTitle = `${service.title} • ${global_settings.title}`
 const pageDescription = service.description
 const highlights: string[] = service.highlights ?? []
+
+const capabilities = [
+  "Infrastructure-as-code with drift and policy guardrails",
+  "Kubernetes platform design and GitOps workflows",
+  "SRE automation across observability, incidents, and FinOps",
+]
+
+const offerings = [
+  {
+    title: "Foundation build",
+    points: ["Landing zones & IAM", "Network + cost guardrails"],
+  },
+  {
+    title: "Modernization",
+    points: ["Application migrations", "Automated testing & rollback"],
+  },
+  {
+    title: "Managed platform",
+    points: ["Release orchestration", "24/7 operations"],
+  },
+]
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="bs-section">
-    <div class="bs-container grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
-      <div class="space-y-5">
+    <div class="bs-container grid gap-14 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] items-start">
+      <div class="space-y-8 lg:pr-12">
         <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">Platform Engineering</span>
-        <h1 class="bs-h1 text-balance">{ service.title }</h1>
-        <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
-          We automate provisioning, policy checks, and incident response so infrastructure stays fast and compliant.
-        </p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {highlights.map((item) => (
-            <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-4 text-sm text-bs-foreground-dark flex items-start gap-3">
-              <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
-              <span>{ item }</span>
-            </div>
-          ))}
+        <div class="space-y-5 max-w-3xl">
+          <h1 class="bs-h1 text-balance">{ service.title }</h1>
+          <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
+            We automate provisioning, policy checks, and incident response so your teams ship fast without sacrificing control.
+          </p>
         </div>
-        <a href="/#contact" class="bs-btn bs-btn-primary w-full sm:w-auto">Start an infrastructure review</a>
+        {highlights.length > 0 && (
+          <div class="max-w-2xl">
+            <ul class="grid gap-4 md:grid-cols-2">
+              {highlights.map((item) => (
+                <li class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 text-sm text-bs-foreground-dark flex items-start gap-3">
+                  <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                  <span>{ item }</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div class="flex flex-wrap gap-3">
+          <a href="/#contact" class="bs-btn bs-btn-primary">Start an infrastructure review</a>
+          <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn">Book a consultation</a>
+        </div>
       </div>
       <aside class="relative overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/80 backdrop-blur">
-        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/20" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/20" aria-hidden="true"></div>
         <div class="relative p-8 space-y-5">
           <h2 class="bs-h3 text-bs-foreground-light">Core capabilities</h2>
           <ul class="space-y-3 text-sm text-bs-foreground-dark leading-relaxed">
-            <li>
-              <strong class="text-bs-foreground-light">Infrastructure-as-code</strong> with Terraform, Pulumi, Ansible, and Crossplane plus drift and policy guardrails.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">Kubernetes platforms</strong> — cluster design, isolation, GitOps, and service mesh layouts.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">SRE operations</strong> — observability stacks, automation, chaos drills, and FinOps dashboards.
-            </li>
+            {capabilities.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                <span>{ item }</span>
+              </li>
+            ))}
           </ul>
-          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 p-5 text-sm text-bs-foreground-dark space-y-2">
-            <p class="font-semibold text-bs-foreground-light uppercase tracking-[0.35em] text-xs">Supported platforms</p>
-            <p>AWS, Azure, GCP, DigitalOcean, VMware, OpenShift, AKS/EKS/GKE, Nomad, OpenStack.</p>
-          </div>
         </div>
       </aside>
     </div>
   </section>
 
   <section class="bs-section">
-    <div class="bs-container grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] items-start">
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Delivery packages</h2>
-        <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 space-y-2 text-sm text-bs-foreground-dark">
-          <p><strong class="text-bs-foreground-light">Foundation build</strong> — landing zones, IAM, networking, and cost guardrails.</p>
-          <p><strong class="text-bs-foreground-light">Migration &amp; modernization</strong> — move workloads with automated testing.</p>
-          <p><strong class="text-bs-foreground-light">Managed platform</strong> — BastCo runs releases, upgrades, and operations.</p>
-        </div>
-        <p class="bs-body-text text-bs-foreground-dark">
-          We embed with your platform team and leave behind playbooks, dashboards, and automated controls.
+    <div class="bs-container space-y-10">
+      <div class="max-w-2xl space-y-3">
+        <h2 class="bs-h3 text-bs-foreground-light">Programs we run</h2>
+        <p class="bs-body-text text-bs-foreground-dark leading-relaxed">
+          Choose the engagement that matches your platform’s maturity and the operating model you need from our team.
         </p>
       </div>
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Outcomes we target</h2>
-        <ul class="space-y-2 text-sm text-bs-foreground-dark">
-          <li>Faster environment provisioning with approvals baked in.</li>
-          <li>CIS/NIST-aligned cloud and container workloads.</li>
-          <li>SLO dashboards shared across leadership and squads.</li>
-        </ul>
-        <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn bs-btn-primary w-full sm:w-auto">
-          Book a platform consultation
-        </a>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {offerings.map((card) => (
+          <article class="h-full rounded-2xl border border-bs-surface-3/70 bg-bs-surface-2/70 p-6 space-y-3">
+            <h3 class="text-base font-semibold text-bs-foreground-light">{ card.title }</h3>
+            <ul class="space-y-2 text-sm text-bs-foreground-dark">
+              {card.points.map((point) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-2 inline-flex h-1.5 w-1.5 rounded-full bg-bs-primary"></span>
+                  <span>{ point }</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </div>
   </section>

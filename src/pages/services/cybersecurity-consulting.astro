@@ -12,75 +12,96 @@ if (!service) {
 const pageTitle = `${service.title} • ${global_settings.title}`
 const pageDescription = service.description
 const highlights: string[] = service.highlights ?? []
+
+const lanes = [
+  "Penetration testing & purple teaming",
+  "SIEM & detection engineering",
+  "Compliance readiness for ISO, SOC 2, PCI, HIPAA, GDPR",
+]
+
+const offerings = [
+  {
+    title: "Penetration testing",
+    points: ["Application, cloud & social", "Fix pairing and retests"],
+  },
+  {
+    title: "Detection enablement",
+    points: ["Use cases & playbooks", "SOC tooling tuned"],
+  },
+  {
+    title: "Compliance programs",
+    points: ["Evidence packs", "Board-ready reporting"],
+  },
+]
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
   <section class="bs-section">
-    <div class="bs-container grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] items-start">
-      <div class="space-y-5">
+    <div class="bs-container grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
+      <div class="space-y-8 lg:pr-12">
         <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">Security Advisory</span>
-        <h1 class="bs-h1 text-balance">{ service.title }</h1>
-        <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
-          We pair offensive testing with detection engineering so security stays current every sprint.
-          Deliverables are built for your SOC, executives, and regulators at the same time.
-        </p>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {highlights.map((item) => (
-            <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-4 text-sm text-bs-foreground-dark flex items-start gap-3">
-              <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
-              <span>{ item }</span>
-            </div>
-          ))}
+        <div class="space-y-5 max-w-3xl">
+          <h1 class="bs-h1 text-balance">{ service.title }</h1>
+          <p class="bs-body-text text-lg text-bs-foreground-dark leading-relaxed">
+            Offensive testing and detection engineering delivered together so security keeps up with product changes.
+          </p>
         </div>
-        <a href="/#contact" class="bs-btn bs-btn-primary w-full sm:w-auto">Engage our security consultants</a>
+        {highlights.length > 0 && (
+          <div class="max-w-2xl">
+            <ul class="grid gap-4 md:grid-cols-2">
+              {highlights.map((item) => (
+                <li class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 text-sm text-bs-foreground-dark flex items-start gap-3">
+                  <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                  <span>{ item }</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <div class="flex flex-wrap gap-3">
+          <a href="/#contact" class="bs-btn bs-btn-primary">Engage our consultants</a>
+          <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn">Request a briefing</a>
+        </div>
       </div>
       <aside class="relative overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/80 backdrop-blur">
-        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/20" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/18" aria-hidden="true"></div>
         <div class="relative p-8 space-y-5">
           <h2 class="bs-h3 text-bs-foreground-light">Engagement lanes</h2>
           <ul class="space-y-3 text-sm text-bs-foreground-dark leading-relaxed">
-            <li>
-              <strong class="text-bs-foreground-light">Penetration testing &amp; purple teaming</strong> — campaigns with replayable issues and pairing to fix them.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">SIEM &amp; detection engineering</strong> — design use cases and playbooks on Splunk, Sentinel, Chronicle, or Wazuh.
-            </li>
-            <li>
-              <strong class="text-bs-foreground-light">Compliance readiness</strong> — ISO 27001, SOC 2, PCI, HIPAA, GDPR evidence handled in one track.
-            </li>
+            {lanes.map((item) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary"></span>
+                <span>{ item }</span>
+              </li>
+            ))}
           </ul>
-          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 p-5 text-sm text-bs-foreground-dark space-y-2">
-            <p class="font-semibold text-bs-foreground-light uppercase tracking-[0.35em] text-xs">Security retainer</p>
-            <p>Monthly pods cover threat intel, vulnerability management, and priority incident help.</p>
-          </div>
         </div>
       </aside>
     </div>
   </section>
 
   <section class="bs-section">
-    <div class="bs-container grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] items-start">
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Deliverables you can trust</h2>
-        <p class="bs-body-text text-bs-foreground-dark">
-          You receive concise reports, remediation tickets, and governance packs ready to brief execs or regulators.
+    <div class="bs-container space-y-10">
+      <div class="max-w-2xl space-y-3">
+        <h2 class="bs-h3 text-bs-foreground-light">How we engage</h2>
+        <p class="bs-body-text text-bs-foreground-dark leading-relaxed">
+          Combine offensive and defensive workstreams with a mix of short punchy sprints and steady program operations.
         </p>
-        <ul class="space-y-2 text-sm text-bs-foreground-dark">
-          <li>Risk-ranked findings with business impact guidance.</li>
-          <li>Detection-as-code, dashboards, and incident playbooks.</li>
-          <li>Evidence bundles and board-ready summaries.</li>
-        </ul>
       </div>
-      <div class="space-y-3">
-        <h2 class="bs-h3 text-bs-foreground-light">Accelerate your roadmap</h2>
-        <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-5 space-y-2 text-sm text-bs-foreground-dark">
-          <p><strong class="text-bs-foreground-light">Foundational assessment</strong> — baseline controls and quick wins.</p>
-          <p><strong class="text-bs-foreground-light">Program build-out</strong> — co-create a measurable security plan.</p>
-          <p><strong class="text-bs-foreground-light">Continuous improvement</strong> — recurring simulations and detection upgrades.</p>
-        </div>
-        <a href="https://cal.com/bastco/intro-call" target="_blank" rel="noopener noreferrer" class="bs-btn bs-btn-primary w-full sm:w-auto">
-          Request a security briefing
-        </a>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {offerings.map((card) => (
+          <article class="h-full rounded-2xl border border-bs-surface-3/70 bg-bs-surface-2/70 p-6 space-y-3">
+            <h3 class="text-base font-semibold text-bs-foreground-light">{ card.title }</h3>
+            <ul class="space-y-2 text-sm text-bs-foreground-dark">
+              {card.points.map((point) => (
+                <li class="flex items-start gap-2">
+                  <span class="mt-2 inline-flex h-1.5 w-1.5 rounded-full bg-bs-primary"></span>
+                  <span>{ point }</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
       </div>
     </div>
   </section>
