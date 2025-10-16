@@ -1,0 +1,159 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  author?: string;
+  tags?: string[];
+  heroImage?: ImageMetadata;
+  readingTime?: number;
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author = 'BastCo Team',
+  tags = [],
+  heroImage,
+  readingTime = 0,
+} = Astro.props as Props;
+
+const published = new Date(pubDate);
+const updated = updatedDate ? new Date(updatedDate) : undefined;
+const publishedLabel = published.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const updatedLabel = updated
+  ? updated.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
+---
+
+<Layout title={`${title} · BastCo Insights`} description={description}>
+  <article class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 pointer-events-none" aria-hidden="true">
+      <div class="absolute inset-0 bg-[radial-gradient(120%_120%_at_10%_-30%,rgba(0,174,239,0.25),transparent)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(90%_90%_at_90%_120%,rgba(74,222,128,0.12),transparent)]"></div>
+    </div>
+
+    <header class="bs-container flex flex-col gap-6 py-16">
+      <div class="flex flex-col gap-3 text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">
+        <span>{publishedLabel}</span>
+        {updatedLabel && (
+          <span class="text-[10px] font-medium tracking-[0.4em] text-bs-foreground-dark/70">
+            Updated {updatedLabel}
+          </span>
+        )}
+      </div>
+      <h1 class="bs-h1 text-bs-foreground-light max-w-4xl">{title}</h1>
+      <p class="text-base sm:text-lg text-bs-foreground-dark max-w-3xl">{description}</p>
+      <div class="flex flex-wrap items-center gap-4 text-sm font-semibold text-bs-foreground-dark">
+        <span class="text-bs-secondary">By {author}</span>
+        <span aria-hidden="true" class="text-bs-foreground-dark/40">•</span>
+        {readingTime > 0 && <span>{readingTime} min read</span>}
+      </div>
+      {tags.length > 0 && (
+        <ul class="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-bs-secondary/80">
+          {tags.map((tag) => (
+            <li class="rounded-full border border-bs-secondary/40 px-3 py-1">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    {heroImage && (
+      <figure class="bs-container mb-16 overflow-hidden rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-1/80 shadow-[0_35px_80px_rgba(0,0,0,0.35)]">
+        <Image
+          src={heroImage}
+          alt=""
+          width={1280}
+          class="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    )}
+
+    <div class="bs-container pb-24">
+      <div class="bs-article">
+        <slot />
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .bs-article {
+    margin-inline: auto;
+    max-width: min(60ch, 100%);
+    display: grid;
+    gap: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgb(148 163 184);
+  }
+
+  .bs-article h2,
+  .bs-article h3,
+  .bs-article h4 {
+    color: rgb(226 232 240);
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  .bs-article h2 {
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+    margin-top: 3rem;
+  }
+
+  .bs-article h3 {
+    font-size: clamp(1.25rem, 1.5vw + 1rem, 1.75rem);
+    margin-top: 2.5rem;
+  }
+
+  .bs-article p {
+    margin: 0;
+  }
+
+  .bs-article a {
+    color: rgb(0 217 255);
+    text-decoration: none;
+  }
+
+  .bs-article a:hover {
+    color: rgb(226 232 240);
+  }
+
+  .bs-article ul,
+  .bs-article ol {
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .bs-article code {
+    background: rgba(15, 20, 25, 0.75);
+    border-radius: 0.45rem;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.9rem;
+    color: rgb(226 232 240);
+  }
+
+  .bs-article blockquote {
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid rgba(0, 174, 239, 0.5);
+    color: rgb(203 213 225);
+    font-style: italic;
+  }
+</style>

@@ -1,4 +1,6 @@
 ---
+import { ContainerTextFlip } from "./ui/container-text-flip.tsx";
+
 const { title, content } = Astro.props
 
 const accentLogos = [
@@ -7,27 +9,25 @@ const accentLogos = [
   "/content-images/logo-10.svg",
 ]
 
-const stats = [
-  {
-    value: "120+",
-    label: "Critical environments",
-  },
-  {
-    value: "98%",
-    label: "Threats neutralized",
-  },
-  {
-    value: "15 min",
-    label: "Average response",
-  },
+const focusWords = [
+  "Security Research",
+  "Managed Response",
+  "Secure Automation",
+  "Product Hardening",
+  "Incident Recovery",
 ]
+
+
+
+
 ---
 
 <section class="relative overflow-hidden py-20 sm:py-28">
 
   <!-- Background wash -->
-  <div class="absolute inset-x-0 -top-40 h-[32rem] opacity-40 blur-3xl pointer-events-none" aria-hidden="true">
+  <div class="absolute inset-x-0 -top-56 h-[36rem] opacity-45 blur-3xl pointer-events-none" aria-hidden="true">
     <img src="/content-images/blackspike-wallpaper-02.avif" alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0b121c] via-transparent to-transparent"></div>
   </div>
 
   <!-- Layout -->
@@ -36,10 +36,7 @@ const stats = [
     <!-- Content -->
     <div class="flex flex-col gap-10 max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
 
-      <span class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold tracking-[0.45em] uppercase text-bs-secondary/80">
-        <span class="inline-block w-2 h-2 rounded-full bg-bs-secondary"></span>
-        Your Trusted Cybersecurity & Software Partners
-      </span>
+    
 
       <h1 class="bs-h1" set:html={ title } />
 
@@ -66,35 +63,26 @@ const stats = [
     <div class="relative flex flex-col gap-6">
       <div class="absolute -inset-6 bg-gradient-to-br from-bs-primary/20 via-transparent to-bs-secondary/15 rounded-[2.5rem] blur-3xl" aria-hidden="true"></div>
       <div class="relative overflow-hidden rounded-[2.25rem] border border-bs-surface-3/70 bg-bs-surface-2/70 backdrop-blur shadow-[0_35px_80px_rgba(0,0,0,0.35)]">
-        <div class="grid gap-6 p-8 md:p-10">
-          <header class="space-y-2">
-            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-bs-secondary/90">Active Defense</p>
-            <h3 class="bs-h3 text-bs-foreground-light">Managed detection &amp; response built for regulated teams.</h3>
+        <div class="grid gap-8 p-8 md:p-10">
+          <header class="space-y-6">
+            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-bs-secondary/90">Focus Areas</p>
+            <div class="flex justify-center">
+              <ContainerTextFlip
+                client:load
+                words={focusWords}
+                interval={2800}
+                animationDuration={800}
+                className="px-4"
+                textClassName="font-display text-bs-foreground-light text-3xl md:text-5xl tracking-tight"
+              />
+            </div>
+        
           </header>
-          <ul class="space-y-4 text-left">
-            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
-              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-primary"></span>
-              <span>Unified telemetry pipeline instrumented across cloud, application, and identity surfaces.</span>
-            </li>
-            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
-              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-secondary"></span>
-              <span>Automation-first runbooks that shrink mean-time-to-contain and preserve audit evidence.</span>
-            </li>
-            <li class="flex items-start gap-3 text-sm text-bs-foreground-dark">
-              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-accent"></span>
-              <span>Embedded specialists who continuously harden your posture through threat-led testing.</span>
-            </li>
-          </ul>
+
         </div>
       </div>
 
-      <div class="relative grid gap-4 sm:grid-cols-3">
-        {stats.map((stat) => (
-          <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 px-5 py-6 text-left shadow-[0_14px_30px_rgba(0,0,0,0.25)]">
-            <p class="text-2xl font-semibold text-bs-foreground-light">{ stat.value }</p>
-            <p class="mt-1 text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">{ stat.label }</p>
-          </div>
-        ))}
+      
       </div>
     </div>
 

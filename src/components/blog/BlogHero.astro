@@ -1,0 +1,26 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Blogs',
+  subtitle = 'Practical playbooks for defending critical software and infrastructure.',
+} = Astro.props as Props;
+---
+
+<section class="relative overflow-hidden py-16 sm:py-20">
+  <div class="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
+    <div class="absolute inset-x-0 top-0 h-48 bg-[radial-gradient(90%_90%_at_50%_-20%,rgba(0,174,239,0.35),transparent)]"></div>
+    <div class="absolute inset-x-0 bottom-0 h-48 bg-[radial-gradient(90%_90%_at_50%_120%,rgba(74,222,128,0.2),transparent)] blur-2xl"></div>
+  </div>
+
+  <div class="bs-container relative flex flex-col gap-6 text-center sm:text-left sm:items-start">
+    <p class="text-xs font-semibold uppercase tracking-[0.45em] text-bs-secondary/80">
+      Blogs
+    </p>
+    <h1 class="bs-h1 text-bs-foreground-light max-w-3xl mx-auto sm:mx-0">{title}</h1>
+    <p class="text-base sm:text-lg text-bs-foreground-dark max-w-2xl mx-auto sm:mx-0">{subtitle}</p>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Workflow Automation Orchestrator (n8n)",
+    "techStack": "n8n • Node.js • TypeScript • PostgreSQL",
+    "description": "Event-driven workflows for data sync, notifications, and back-office automation with custom nodes, secrets management, retries, and metrics.",
+    "ctaText": "View Repo →",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  },
+  {
+    "title": "SaaS API Starter (Auth, Billing, RBAC)",
+    "techStack": "Node.js • TypeScript • PostgreSQL • Supabase • Stripe",
+    "description": "Production-ready REST/GraphQL API with JWT auth, role-based access, Stripe subscriptions, and rate-limited endpoints.",
+    "ctaText": "Get Source < / >",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  },
+  {
+    "title": "Realtime Chat Service",
+    "techStack": "Phoenix • WebSockets • Redis • Docker",
+    "description": "Low-latency chat with channels, presence, and backpressure handling, including load tests and horizontal scaling notes.",
+    "ctaText": "Live Demo →",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  },
+  {
+    "title": "Product Analytics Pipeline",
+    "techStack": "Node.js • PostHog • PostgreSQL • ClickHouse",
+    "description": "Event ingestion, batching, and replay with cohorts, dashboards, and analytics tuned for feature adoption monitoring.",
+    "ctaText": "Read Case Study →",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  },
+  {
+    "title": "Data Ingestion & ETL",
+    "techStack": "Python • Airflow • PostgreSQL • S3",
+    "description": "Scheduled extract/transform/load with schema migrations, data quality checks, and partitioned tables for analytics.",
+    "ctaText": "View Repo →",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  },
+  {
+    "title": "Design System",
+    "techStack": "React • TypeScript • Tailwind CSS • Storybook",
+    "description": "Accessible UI kit with tokens, theming, testing, and versioned releases complete with documentation.",
+    "ctaText": "Docs →",
+    "ctaLink": "https://github.com/orgs/Bastsec/"
+  }
+]

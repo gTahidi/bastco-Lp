@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioSection from '../components/PortfolioSection.astro';
+import portfolioItems from '../data/portfolio.json';
+---
+
+<Layout
+  title="BastCo Portfolio & Case Studies"
+  description="A curated look at the playbooks, platforms, and defenses we ship for high-stakes teams."
+>
+  <section class="relative overflow-hidden py-20 sm:py-24">
+    <div class="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
+      <div class="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(120%_120%_at_50%_-30%,rgba(0,174,239,0.27),transparent)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-64 bg-[radial-gradient(90%_90%_at_80%_140%,rgba(74,222,128,0.2),transparent)] blur-2xl"></div>
+    </div>
+
+    <div class="bs-container relative grid gap-12 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1fr)] items-center">
+      <div class="space-y-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.45em] text-bs-secondary/80">
+          Proven Delivery
+        </p>
+        <h1 class="bs-h1 text-bs-foreground-light max-w-3xl">
+          The programs we operate keep critical platforms resilient.
+        </h1>
+        <p class="text-base sm:text-lg text-bs-foreground-dark max-w-2xl">
+          Every engagement blends threat-led testing, automation, and operational muscle. Explore how BastCo turns
+          security strategy into durable systems ready for attackers and auditors alike.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/#contact" class="bs-btn bs-btn-primary px-10">
+            Start a Conversation
+          </a>
+          <a href="/blog" class="bs-btn !bg-transparent !border-bs-secondary/40 text-bs-secondary hover:!border-bs-secondary hover:text-bs-foreground-light">
+            Read Our Insights
+          </a>
+        </div>
+      </div>
+
+      <div class="grid gap-5 rounded-[2.5rem] border border-bs-surface-3/70 bg-bs-surface-2/70 p-10 shadow-[0_35px_80px_rgba(0,0,0,0.35)] backdrop-blur">
+        <div class="flex flex-col gap-4">
+          <p class="text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/70">
+            HOW WE PARTNER
+          </p>
+          <ul class="grid gap-3 text-sm text-bs-foreground-dark">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-primary"></span>
+              <span>Embedded response teams that bring detection engineering, purple teaming, and automation talent.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-secondary"></span>
+              <span>Portfolio of hardened accelerators covering identity, access fabric, and observability pipelines.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-bs-accent"></span>
+              <span>Outcome-backed engagements measured in reduced dwell time, improved visibility, and faster delivery.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-bs-surface-3/60 bg-bs-surface-1/80 p-6 text-sm text-bs-foreground-dark">
+          <p class="font-semibold text-bs-foreground-light">Security heartbeat</p>
+          <p class="mt-2">
+            24/7 detection coverage with automation-first runbooks has reduced containment windows by an average of 63%
+            for BastCo partners in the last twelve months.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PortfolioSection items={portfolioItems} />
+</Layout>

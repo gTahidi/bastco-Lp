@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props as Props;
+const { title, description, pubDate, tags = [] } = post.data;
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="group relative flex flex-col gap-6 rounded-3xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-8 transition duration-300 hover:-translate-y-1.5 hover:border-bs-secondary/60 hover:shadow-[0_28px_60px_rgba(0,174,239,0.18)]">
+  <header class="space-y-3">
+    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">
+      {formattedDate}
+    </p>
+    <h3 class="bs-h3 text-bs-foreground-light">{title}</h3>
+    <p class="text-sm text-bs-foreground-dark">{description}</p>
+  </header>
+
+  {tags.length > 0 && (
+    <ul class="flex flex-wrap gap-2 text-xs font-medium text-bs-secondary/80">
+      {tags.map((tag) => (
+        <li class="rounded-full border border-bs-secondary/40 px-3 py-1 tracking-[0.15em] uppercase">
+          {tag}
+        </li>
+      ))}
+    </ul>
+  )}
+
+  <div class="flex items-center justify-between pt-4 text-sm font-semibold text-bs-secondary">
+    <span>Read article</span>
+    <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
+  </div>
+
+  <a href={`/blog/${post.slug}/`} class="absolute inset-0 rounded-3xl" aria-label={`Read ${title}`}></a>
+</article>

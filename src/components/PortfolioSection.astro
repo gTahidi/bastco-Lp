@@ -1,0 +1,57 @@
+---
+interface PortfolioItem {
+  title: string;
+  techStack: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+interface Props {
+  items: PortfolioItem[];
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  items,
+  title = 'Selected Work',
+  subtitle = 'Brief snapshots from the projects and playbooks we deliver for security-conscious teams.',
+} = Astro.props as Props;
+---
+
+<section class="relative overflow-hidden py-20 sm:py-24">
+  <div class="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true">
+    <div class="absolute inset-0 bg-[radial-gradient(120%_120%_at_80%_-50%,rgba(0,174,239,0.25),transparent)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(90%_90%_at_20%_120%,rgba(74,222,128,0.18),transparent)] blur-2xl"></div>
+  </div>
+
+  <div class="bs-container relative space-y-12">
+    <header class="flex flex-col gap-4 text-center sm:text-left max-w-3xl">
+      <p class="text-xs font-semibold uppercase tracking-[0.45em] text-bs-secondary/70">Portfolio</p>
+      <h2 class="bs-h2 text-bs-foreground-light">{title}</h2>
+      <p class="text-base text-bs-foreground-dark">{subtitle}</p>
+    </header>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      {items.map((item) => (
+        <article class="group relative flex flex-col gap-6 rounded-3xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-10 transition duration-300 hover:-translate-y-1.5 hover:border-bs-secondary/60 hover:shadow-[0_35px_80px_rgba(0,174,239,0.2)]">
+          <div class="flex flex-col gap-3">
+            <h3 class="bs-h3 text-bs-foreground-light">{item.title}</h3>
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-bs-secondary/80">{item.techStack}</p>
+            <p class="text-sm text-bs-foreground-dark leading-relaxed">{item.description}</p>
+          </div>
+          <div>
+            <a
+              class="inline-flex items-center gap-2 text-sm font-semibold text-bs-secondary transition duration-300 hover:text-bs-foreground-light"
+              href={item.ctaLink}
+            >
+              {item.ctaText}
+              <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

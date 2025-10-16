@@ -1,5 +1,16 @@
 ---
-const { settings } = Astro.props
+type LinkItem = {
+  title: string;
+  link: string;
+};
+
+interface FooterSettings {
+  nav: LinkItem[];
+  social_links: LinkItem[];
+  [key: string]: unknown;
+}
+
+const { settings } = Astro.props as { settings: FooterSettings };
 ---
 
 <footer class="relative @container bs-container my-24 font-semibold text-bs-foreground-dark" id="contact">
@@ -36,7 +47,7 @@ const { settings } = Astro.props
         <div class="flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-bs-secondary/80">
           <span>Follow</span>
           <div class="flex gap-3">
-            { settings.social_links.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+            { [...settings.social_links].sort((a, b) => a.title.localeCompare(b.title)).map((item) =>
               <a href={ item.link } target="_blank" rel="noopener noreferrer" class="hover:text-bs-secondary">{ item.title }</a>
             )}
           </div>
@@ -52,7 +63,7 @@ const { settings } = Astro.props
 
           <h4 class="text-bs-foreground-light mb-2 uppercase tracking-[0.3em] text-xs">Links</h4>
 
-          { settings.nav.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+          { [...settings.nav].sort((a, b) => a.title.localeCompare(b.title)).map((item) =>
 
             <a href={ item.link } class="hover:text-bs-foreground-light">
               { item.title }

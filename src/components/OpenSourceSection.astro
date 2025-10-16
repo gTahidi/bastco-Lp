@@ -23,13 +23,11 @@ const repoImages = [
   <div class="grid md:grid-cols-3 gap-6">
 
     { repos.map((repo, index) => {
-      const screenshot = repoImages[index % repoImages.length]
+      const screenshot = repoImages[index % repoImages.length];
+      const displayUrl = repo.url.replace(/^https?:\/\//, '');
 
       return (
-        <a 
-          href={ repo.url } 
-          target="_blank" 
-          rel="noopener noreferrer"
+        <article 
           class="group relative overflow-hidden rounded-2xl border border-bs-surface-3/70 bg-bs-surface-2/70 backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2"
         >
           <div class="absolute inset-0 opacity-20" aria-hidden="true">
@@ -47,15 +45,20 @@ const repoImages = [
 
             <p class="bs-body-text text-bs-foreground-dark">{ repo.description }</p>
 
-            <span class="inline-flex items-center gap-2 text-sm font-semibold text-bs-primary group-hover:text-bs-secondary transition-colors">
-              View on GitHub
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25h13.5v13.5" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 16.5 18.75 5.25" />
+            <a
+              class="inline-flex items-center gap-3 rounded-full border border-bs-primary/30 bg-bs-surface-1/70 px-4 py-2 text-xs font-mono text-bs-secondary transition-colors duration-300 group-hover:border-bs-secondary group-hover:text-bs-foreground-light"
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {displayUrl}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 19 19 5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5h10v10" />
               </svg>
-            </span>
+            </a>
           </div>
-        </a>
+        </article>
       )
     })}
 

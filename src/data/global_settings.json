@@ -5,31 +5,20 @@
   "base_url": "https://bastco.com",
   "theme_color": "#0f1419",
   "nav": [
-    {
-      "title": "Services",
-      "link": "/#services"
-    },
-    {
-      "title": "Open Source",
-      "link": "/#opensource"
-    },
-    {
-      "title": "About Us",
-      "link": "/#about"
-    },
-    {
-      "title": "Contact",
-      "link": "/#contact"
-    }
+    { "title": "Home", "link": "/" },
+    { "title": "Services", "link": "/#services" },
+    { "title": "Portfolio", "link": "/portfolio" },
+    { "title": "Blog", "link": "/blog" },
+    { "title": "Contact", "link": "/#contact" }
   ],
   "social_links": [
     {
       "title": "GitHub",
-      "link": "https://github.com/addcontent"
+      "link": "https://github.com/orgs/Bastsec/"
     },
     {
       "title": "Blog",
-      "link": "https://blog.bastco.org"
+      "link": "/blog"
     }
   ]
 }

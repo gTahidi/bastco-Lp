@@ -1,0 +1,57 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => {
+    const derivedSlug =
+      post.slug ??
+      post.id
+        .replace(/\\/g, '/')
+        .split('/')
+        .pop()
+        ?.replace(/\.[^/.]+$/, '');
+
+    if (!derivedSlug) {
+      throw new Error(`Unable to determine slug for blog entry "${post.id}"`);
+    }
+
+    return {
+      params: { slug: derivedSlug },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+if (!slug) {
+  throw new Error('Missing blog slug');
+}
+
+const post = await getEntry('blog', Array.isArray(slug) ? slug.join('/') : slug);
+if (!post) {
+  throw new Error(`Blog post not found for slug "${slug}"`);
+}
+
+const { Content } = await render(post);
+const tags = post.data.tags ?? [];
+const combinedTags = post.data.category
+  ? Array.from(new Set([...tags, post.data.category]))
+  : tags;
+
+const wordCount = post.body ? post.body.split(/\s+/).filter(Boolean).length : 0;
+const readingTime = wordCount > 0 ? Math.max(1, Math.round(wordCount / 200)) : 0;
+---
+
+<BlogPostLayout
+  title={post.data.title}
+  description={post.data.description}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  author={post.data.author}
+  tags={combinedTags}
+  heroImage={post.data.heroImage}
+  readingTime={readingTime}
+>
+  <Content />
+</BlogPostLayout>
