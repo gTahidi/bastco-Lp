@@ -1,4 +1,5 @@
 ---
+import CalBookingEmbed from "./CalBookingEmbed.tsx";
 ---
 
 <section id="contact" class="relative py-24">
@@ -19,14 +20,11 @@
       <p class="bs-body-text text-lg text-bs-foreground-dark max-w-2xl mx-auto">Ready to secure and elevate your business? Reach out to us today.</p>
     </div>
 
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.1fr)] items-stretch">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.35fr)] items-stretch">
 
       <!-- Contact details -->
       <div class="bg-bs-surface-2/70 border border-bs-surface-3/60 rounded-2xl p-8 md:p-10 flex flex-col gap-8 shadow-xl shadow-black/25">
-        <header class="space-y-2">
-          <p class="text-xs font-semibold uppercase tracking-[0.38em] text-bs-secondary/80">Security Operations Desk</p>
-          <h3 class="bs-h3 text-bs-foreground-light">We mobilize senior responders in minutes, not days.</h3>
-        </header>
+        
 
         <ul class="space-y-4 text-sm text-bs-foreground-dark leading-relaxed">
           <li class="flex items-start gap-3">
@@ -43,10 +41,10 @@
           </li>
         </ul>
 
-        <dl class="space-y-3 text-bs-foreground-dark">
+        <dl class="space-y-45 text-bs-foreground-dark">
           <div>
-            <dt class="text-xs uppercase tracking-[0.3em] text-bs-secondary/80">Email</dt>
-            <dd><a href="mailto:info@bastco.com" class="text-bs-primary hover:text-bs-secondary transition-colors">info@bastco.com</a></dd>
+            <dt class="text-xs uppercase tracking-[0.3em] text-bs-secondary/80">Schedule</dt>
+            <dd><a href="#contact" class="text-bs-primary hover:text-bs-secondary transition-colors">Book time via Cal.com</a></dd>
           </div>
           <div>
             <dt class="text-xs uppercase tracking-[0.3em] text-bs-secondary/80">Office</dt>
@@ -63,71 +61,22 @@
         </div>
       </div>
 
-      <!-- Form -->
+      <!-- Scheduling -->
       <div class="relative overflow-hidden rounded-2xl border border-bs-surface-3/60 bg-bs-surface-2/80 backdrop-blur">
-        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/25" aria-hidden="true"></div>
-        <form class="relative flex flex-col gap-6 p-8 md:p-10">
-          <p class="text-sm text-bs-foreground-dark/90 leading-relaxed">
-            Tell us who we’ll be speaking with and what outcome you’re aiming for. We’ll bring the right specialists to your session.
+        <div class="absolute inset-0 bg-gradient-to-br from-bs-primary/18 via-transparent to-bs-secondary/25 pointer-events-none" aria-hidden="true"></div>
+        <div class="relative flex flex-col gap-6 p-6 md:p-8">
+          <p class="text-sm text-bs-foreground-dark/90 leading-relaxed text-center md:text-left">
+            Pick a time that works for you and we’ll align the right responders for your objectives.
           </p>
 
-          <div class="grid md:grid-cols-2 gap-6">
-            <div>
-              <label for="name" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Your Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
-                placeholder="Jordan Carter"
-              />
-            </div>
-
-            <div>
-              <label for="email" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Work Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
-                placeholder="jordan@company.com"
-              />
-            </div>
+          <div class="rounded-xl border border-bs-surface-3/70 bg-bs-surface-1/70 backdrop-blur-sm overflow-hidden shadow-inner shadow-black/20 flex items-center justify-center p-2 md:p-4">
+            <CalBookingEmbed client:load />
           </div>
 
-          <div>
-            <label for="initiative" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Focus Area</label>
-            <select
-              id="initiative"
-              name="initiative"
-              class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light"
-            >
-              <option value="" selected>Choose the initiative that best fits</option>
-              <option value="mdr">Managed Detection &amp; Response</option>
-              <option value="appsec">Product / Application Security</option>
-              <option value="cloud">Cloud Security &amp; DevSecOps</option>
-              <option value="advisory">Security Architecture Advisory</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="message" class="block text-sm font-semibold mb-2 text-bs-foreground-light">Context (optional)</label>
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="4"
-              class="w-full px-4 py-3 bg-bs-surface-1/80 border border-bs-surface-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-bs-primary text-bs-foreground-light resize-none"
-              placeholder="Share any scope, timeline, or compliance drivers..."
-            ></textarea>
-          </div>
-
-          <a href="https://cal.com/bastco" target="_blank" rel="noopener noreferrer" class="bs-btn bs-btn-primary self-start px-10">
-            Book a call on Cal.com
-          </a>
-
-          <p class="text-xs text-bs-foreground-dark/70">Prefer email? Reach us directly at <a class="text-bs-primary hover:text-bs-secondary" href="mailto:info@bastco.com">info@bastco.com</a>.</p>
-
-        </form>
+          <p class="text-xs text-bs-foreground-dark/70">
+            Prefer email? Reach us directly at <a class="text-bs-primary hover:text-bs-secondary" href="https://cal.com/bastco/15min" target="_blank" rel="noopener noreferrer">cal.com/bastco/15min</a>.
+          </p>
+        </div>
       </div>
 
     </div>
@@ -135,3 +84,14 @@
   </div>
 
 </section>
+
+<style is:global>
+  [data-cal-namespace="bastco-15min"] {
+    width: 100% !important;
+  }
+
+  [data-cal-namespace="bastco-15min"] iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+</style>

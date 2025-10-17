@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = 'Blogs',
-  subtitle = 'Practical playbooks for defending critical software and infrastructure.',
+  subtitle = '',
 } = Astro.props as Props;
 ---
 
@@ -17,9 +17,6 @@ const {
   </div>
 
   <div class="bs-container relative flex flex-col gap-6 text-center sm:text-left sm:items-start">
-    <p class="text-xs font-semibold uppercase tracking-[0.45em] text-bs-secondary/80">
-      Blogs
-    </p>
     <h1 class="bs-h1 text-bs-foreground-light max-w-3xl mx-auto sm:mx-0">{title}</h1>
     <p class="text-base sm:text-lg text-bs-foreground-dark max-w-2xl mx-auto sm:mx-0">{subtitle}</p>
   </div>

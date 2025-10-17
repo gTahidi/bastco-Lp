@@ -2,13 +2,11 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogHero from '../../components/blog/BlogHero.astro';
-import FeaturedPost from '../../components/blog/FeaturedPost.astro';
 import PostCard from '../../components/blog/PostCard.astro';
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate),
 );
-const [featured, ...rest] = posts;
 ---
 
 <Layout
@@ -17,29 +15,15 @@ const [featured, ...rest] = posts;
 >
   <BlogHero />
 
-  {featured ? (
-    <section class="bs-container space-y-16">
-      <FeaturedPost post={featured} />
+  {posts.length > 0 ? (
+    <section class="bs-container space-y-10">
+     
 
-      {rest.length > 0 && (
-        <div class="space-y-6">
-          <header class="flex flex-col gap-2">
-            <p class="text-xs font-semibold uppercase tracking-[0.4em] text-bs-secondary/70">
-              Latest Insights
-            </p>
-            <h2 class="bs-h2 text-bs-foreground-light">Fresh from the response floor</h2>
-            <p class="text-sm text-bs-foreground-dark max-w-2xl">
-              Actionable guidance for teams who defend critical infrastructure and ship secure software.
-            </p>
-          </header>
-
-          <div class="grid gap-8 md:grid-cols-2">
-            {rest.map((post) => (
-              <PostCard post={post} />
-            ))}
-          </div>
-        </div>
-      )}
+      <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
     </section>
   ) : (
     <section class="bs-container py-24 text-center text-bs-foreground-dark">
