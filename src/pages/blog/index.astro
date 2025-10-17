@@ -16,10 +16,8 @@ const posts = (await getCollection('blog')).sort(
   <BlogHero />
 
   {posts.length > 0 ? (
-    <section class="bs-container space-y-10">
-     
-
-      <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+    <section class="bs-container flex flex-col gap-12 py-20 pb-36 lg:py-28 min-h-[75vh]">
+      <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
         {posts.map((post) => (
           <PostCard post={post} />
         ))}

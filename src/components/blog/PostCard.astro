@@ -12,6 +12,17 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric',
 });
+const derivedSlug =
+  post.slug ??
+  post.id
+    .replace(/\\/g, '/')
+    .split('/')
+    .pop()
+    ?.replace(/\.[^/.]+$/, '');
+
+if (!derivedSlug) {
+  throw new Error(`Unable to determine slug for blog entry "${post.id}"`);
+}
 ---
 
 <article class="group relative flex flex-col gap-6 rounded-3xl border border-bs-surface-3/60 bg-bs-surface-2/70 p-8 transition duration-300 hover:-translate-y-1.5 hover:border-bs-secondary/60 hover:shadow-[0_28px_60px_rgba(0,174,239,0.18)]">
@@ -38,5 +49,5 @@ const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
     <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-1">→</span>
   </div>
 
-  <a href={`/blog/${post.slug}/`} class="absolute inset-0 rounded-3xl" aria-label={`Read ${title}`}></a>
+  <a href={`/blog/${derivedSlug}/`} class="absolute inset-0 rounded-3xl" aria-label={`Read ${title}`}></a>
 </article>

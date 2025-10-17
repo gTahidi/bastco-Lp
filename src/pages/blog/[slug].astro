@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
 
 export async function getStaticPaths() {
@@ -28,9 +28,22 @@ if (!slug) {
   throw new Error('Missing blog slug');
 }
 
-const post = await getEntry('blog', Array.isArray(slug) ? slug.join('/') : slug);
+const entrySlug = Array.isArray(slug) ? slug.join('/') : slug;
+const allPosts = await getCollection('blog');
+const post = allPosts.find((entry) => {
+  const derivedSlug =
+    entry.slug ??
+    entry.id
+      .replace(/\\/g, '/')
+      .split('/')
+      .pop()
+      ?.replace(/\.[^/.]+$/, '');
+
+  return derivedSlug === entrySlug;
+});
+
 if (!post) {
-  throw new Error(`Blog post not found for slug "${slug}"`);
+  throw new Error(`Blog post not found for slug "${entrySlug}"`);
 }
 
 const { Content } = await render(post);
