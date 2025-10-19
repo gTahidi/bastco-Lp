@@ -1,4 +1,4 @@
----
+####---
 title: "The Offensive Pivot: Turning Failed Bypasses Into Novel Attack Surfaces"
 description: "Systematic post-failure methodology that pivots off defensive responses to uncover fresh offensive security research angles."
 pubDate: 2025-10-21

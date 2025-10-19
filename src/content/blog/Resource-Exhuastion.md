@@ -1,4 +1,4 @@
----
+####---
 title: "Resource Exhaustion vs Security Vulnerability: A Diagnostic Framework"
 description: "Diagnostic criteria and testing workflow for telling real security vulnerabilities apart from plain resource exhaustion during offensive research."
 pubDate: 2025-10-07

@@ -1,4 +1,4 @@
----
+####---
 title: "Bypassing Windows ETW: User-Mode Success, Kernel-Mode Reality"
 description: "User-mode ETW patching succeeds, yet kernel-mode telemetry keeps recording process events, showing Windows’ defense-in-depth still works."
 pubDate: 2025-10-14
