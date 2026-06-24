@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
+    "blog:new": "node scripting/new-blog-post.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

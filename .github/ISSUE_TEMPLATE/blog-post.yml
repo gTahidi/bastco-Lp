@@ -1,0 +1,66 @@
+name: Blog post
+description: Request or track a BastCo blog post
+title: "Blog: "
+labels:
+  - blog
+body:
+  - type: input
+    id: working-title
+    attributes:
+      label: Working title
+      description: The title the post should use unless editing changes it.
+      placeholder: "A Deep Dive into ..."
+    validations:
+      required: true
+  - type: textarea
+    id: source-material
+    attributes:
+      label: Source material
+      description: Paste the raw notes, outline, links, logs, or draft that the writer should use.
+      placeholder: "Include the technical facts, screenshots to reference, and any claims that need careful handling."
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Cybersecurity
+        - Infrastructure Automation
+        - Enterprise Software
+        - AI Gateways
+        - Open Source
+        - Company
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated tags for the post frontmatter.
+      placeholder: "ebpf, verifier, windows"
+    validations:
+      required: true
+  - type: textarea
+    id: audience-angle
+    attributes:
+      label: Audience and angle
+      description: Who this is for and what they should understand or do after reading.
+      placeholder: "Security engineers who want a reproducible methodology for verifier testing."
+    validations:
+      required: true
+  - type: input
+    id: publish-date
+    attributes:
+      label: Publish date
+      description: Use YYYY-MM-DD. Leave blank if the post should use the day it is created.
+      placeholder: "2026-06-24"
+  - type: checkboxes
+    id: done
+    attributes:
+      label: Publishing checklist
+      options:
+        - label: The post has a clear technical claim and evidence.
+        - label: The draft avoids unsupported security claims.
+        - label: Frontmatter has title, description, pubDate, author, tags, and category.
+        - label: `npm run build` passes before merge.

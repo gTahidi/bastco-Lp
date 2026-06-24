@@ -1,0 +1,4 @@
+interface:
+  display_name: "BastCo Blog Writer"
+  short_description: "Draft and publish BastCo blog posts"
+  default_prompt: "Use $bastco-blog-writer to turn this topic or draft into a publishable BastCo blog post."
