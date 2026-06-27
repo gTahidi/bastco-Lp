@@ -1,13 +1,13 @@
 ---
 name: bastco-blog-writer
-description: Write and publish BastCo blog posts in this Astro repo. Use when asked to turn a GitHub blog issue, rough notes, research findings, security write-up, infrastructure playbook, or draft Markdown into a polished BastCo post under src/content/blog with valid frontmatter and build-ready formatting.
+description: Write and publish BastCo blog posts in this Astro repo. Use when asked to turn a GitHub blog issue, rough notes, research findings, security write-up, infrastructure playbook, or draft Markdown into a polished post under src/content/blog, then commit and push it for deployment.
 ---
 
 # BastCo Blog Writer
 
 ## Overview
 
-Produce a publishable BastCo blog post and commit-ready repository change. The site uses Astro content collections, so every post must be a Markdown or MDX file in `src/content/blog/` with the frontmatter defined in `src/content/config.ts`.
+Produce a published BastCo blog post, not just a local draft. The site uses Astro content collections, so every post must be a Markdown or MDX file in `src/content/blog/` with the frontmatter defined in `src/content/config.ts`.
 
 ## Workflow
 
@@ -21,6 +21,8 @@ Produce a publishable BastCo blog post and commit-ready repository change. The s
 4. Replace all generated `TODO` sections with the final post. Keep the first Markdown heading aligned with the frontmatter title.
 5. Run `npm run build` before claiming the post is ready.
 6. Commit only the blog workflow/post files relevant to the request.
+7. Push the commit to the appropriate remote branch. In the normal publishing path for this repo, push `main` to `origin/main` so the Azure Static Web Apps workflow can deploy the post. Do not stop after a local commit unless the user explicitly asks for a draft, local-only change, or PR-only workflow.
+8. Verify the publish handoff after pushing: check that the local branch is no longer ahead of its upstream, and when publishing to `main`, check that the GitHub Actions deploy workflow started or completed.
 
 ## Frontmatter Contract
 
@@ -82,6 +84,21 @@ npm run blog:new -- --title "A Deep Dive into Verifier Testing" --description "V
 
 The script writes `src/content/blog/<slug>.md` and refuses to overwrite an existing file. If the script reports that a file exists, inspect the existing post instead of forcing an overwrite.
 
+## Publishing
+
+Publishing means the relevant commit has left the local machine. After the build passes:
+
+```bash
+git status --short --branch
+git add src/content/blog/<slug>.md
+git commit -m "Add <short blog title> post"
+git push origin main
+git status --short --branch
+gh run list --workflow "Azure Static Web Apps CI/CD" --branch main --limit 3
+```
+
+Adjust the `git add` paths when the request also changes blog tooling, templates, or issue metadata. If the current branch is not `main`, push the current branch and tell the user whether a PR or merge to `main` is still required before the live site can deploy. If push or deploy verification fails because of authentication, permissions, branch protection, or CI failures, report that the post is locally built but not fully published, with the exact blocking command and error.
+
 ## Quality Bar
 
 Before finishing:
@@ -89,4 +106,5 @@ Before finishing:
 - Verify there are no `TODO` placeholders in the post.
 - Verify frontmatter matches `src/content/config.ts`.
 - Run `npm run build`.
-- Summarize the created slug, category, tags, and build result.
+- Verify the blog commit was pushed, or state exactly why it could not be pushed.
+- Summarize the created slug, category, tags, build result, pushed commit, and deploy workflow status.
