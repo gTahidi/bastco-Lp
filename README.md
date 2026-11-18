@@ -153,8 +153,11 @@ Cal.com. No booking credentials belong in this codebase.
 - `src/pages/kifaru.astro`: Kifaru capabilities, boundaries, and setup links.
 - `src/components/`: shared navigation, footer, cards, booking, workflow illustration.
 - `src/assets/css/site.css`: shared visual system and responsive layouts.
-- `src/assets/css/visual.css`: light, visual-first homepage and Kifaru variants;
-  service and reading routes retain their dark theme.
+- `src/assets/css/visual.css`: light, visual-first shared page styling.
+- `src/assets/css/editorial.css`: capabilities overview, research index, and article
+  reading layouts. Service-detail routes retain their dark theme.
+- `src/components/blog/`, `src/layouts/BlogPostLayout.astro`: research cards,
+  publication metadata, preserved authorship, and readable long-form content.
 - `src/components/WorkbenchPreview.astro`: keyboard-accessible, simulated workflow;
   all four stages remain readable without JavaScript.
 - `src/components/PricingPreview.astro`: explicitly proposed Community/Pro/Team

@@ -3,40 +3,46 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogHero from '../../components/blog/BlogHero.astro';
 import PostCard from '../../components/blog/PostCard.astro';
-
 const posts = (await getCollection('blog')).sort(
   (a, b) => +new Date(b.data.pubDate) - +new Date(a.data.pubDate),
 );
 ---
 
 <Layout
-  title="BastCo Insights & Research"
-  description="Research, playbooks, and stories from the BastCo cybersecurity and software response team."
+  visual
+  title="Research & notes — Bastco"
+  description="Security research, engineering notes, and perspectives from Bastco. Explore the evidence and the ideas behind the work."
 >
   <BlogHero />
-
-  {
-    posts.length > 0 ? (
-      <section class="bs-container flex flex-col gap-12 py-20 pb-36 lg:py-28 min-h-[75vh]">
-        <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+  <section id="articles" class="site-container journal-index">
+    <div class="journal-index-heading">
+      <h2>The latest writing</h2><span
+        >{`${posts.length} ${posts.length === 1 ? 'article' : 'articles'} · Newest first`}</span>
+    </div>
+    {
+      posts.length > 0 ? (
+        <div class="journal-grid">
           {posts.map((post) => (
             <PostCard post={post} />
           ))}
         </div>
-      </section>
-    ) : (
-      <section class="bs-container py-24 text-center text-bs-foreground-dark">
-        <p class="text-lg">
-          We are preparing our first set of stories. Check back soon or{' '}
-          <a
-            class="text-bs-secondary underline hover:text-bs-foreground-light"
-            href="/#contact"
-          >
-            contact Bastco
-          </a>{' '}
-          to suggest a topic.
-        </p>
-      </section>
-    )
-  }
+      ) : (
+        <div class="journal-empty">
+          <>
+            <h3>A new investigation is taking shape.</h3>
+            <p>
+              Check back for research and notes, or{' '}
+              <a href="/#contact">suggest a topic</a>.
+            </p>
+          </>
+        </div>
+      )
+    }
+  </section>
+  <section class="site-container journal-footer-note">
+    <p>Curious about the work behind the writing?</p><a
+      class="text-link"
+      href="/portfolio"
+      >Explore our capabilities <span aria-hidden="true">↗</span></a>
+  </section>
 </Layout>

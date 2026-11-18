@@ -307,10 +307,48 @@ test('workflow and proposed pricing remain readable without JavaScript', async (
   }
 });
 
+test('capabilities links connect disciplines, Kifaru, and the contact section', async ({
+  page,
+}) => {
+  await page.goto('/portfolio/');
+  await expect(page.locator('body')).toHaveClass('visual');
+  await expect(page.locator('.services-grid .service-card')).toHaveCount(4);
+  await page.getByRole('link', { name: /Discuss your scope/ }).click();
+  await expect(page).toHaveURL(/#contact$/);
+  await expect(page.locator('#contact')).toBeInViewport();
+  await expect(
+    page.getByRole('link', { name: 'Explore Kifaru', exact: false }),
+  ).toHaveAttribute('href', '/kifaru');
+});
+
+test('journal cards open readable articles with authorship and a route back', async ({
+  page,
+}) => {
+  await page.goto('/blog/');
+  await expect(page.locator('body')).toHaveClass('visual');
+  await expect(page.locator('.journal-card')).toHaveCount(2);
+  const article = page.locator('.journal-card').first();
+  const title = await article.locator('h3').innerText();
+  await article.getByRole('link').click();
+  await expect(page.locator('h1')).toHaveText(title);
+  await expect(page.locator('.reading-byline')).toContainText('By ');
+  await expect(page.locator('.reading-body')).toBeVisible();
+  await expect(page.locator('.site-footer')).toBeAttached();
+  await page.getByRole('link', { name: '← All research & notes' }).click();
+  await expect(page).toHaveURL(/\/blog\/$/);
+});
+
 test('narrow viewports remain contained', async ({ page }) => {
   for (const width of [320, 360, 768, 1024]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const route of ['/', '/kifaru', '/portfolio']) {
+    for (const route of [
+      '/',
+      '/kifaru',
+      '/portfolio',
+      '/blog',
+      '/blog/when-vulnerability-reports-stop-being-special',
+      '/blog/a-deep-dive-into-verifier-testing----windows-ebpf-case',
+    ]) {
       await page.goto(route);
       expect(
         await page.evaluate(

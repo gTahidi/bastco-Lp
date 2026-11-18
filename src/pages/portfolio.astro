@@ -3,49 +3,153 @@ import Layout from '../layouts/Layout.astro';
 import services from '../data/services.json';
 import ServicesSection from '../components/ServicesSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+const stages = [
+  {
+    number: '01',
+    title: 'Understand',
+    text: 'Agree on the system, the question, and the authorized scope.',
+  },
+  {
+    number: '02',
+    title: 'Investigate',
+    text: 'Connect observations to evidence and identify the engineering work.',
+  },
+  {
+    number: '03',
+    title: 'Build & validate',
+    text: 'Review the changes and check the result against the agreed objectives.',
+  },
+];
 ---
 
 <Layout
+  visual
   title="Engineering capabilities — Bastco"
-  description="Explore Bastco’s cybersecurity, infrastructure, software engineering, and AI gateway engagement capabilities."
+  description="Security, infrastructure, software, and AI gateways. Explore the work Bastco can scope with your team."
 >
-  <section class="site-container section">
-    <p class="eyebrow">Engineering capabilities</p><h1
-      class="display-heading"
-      style="max-width:52rem"
-    >
-      From understanding the risk<br />to building the response.
-    </h1>
-    <p class="muted" style="max-width:40rem;margin:1.5rem 0 2rem">
-      Explore the kinds of work we can scope together. These are service
-      capabilities, not published client case studies or independently verified
-      performance results.
-    </p>
-    <div class="actions">
-      <a class="button button-primary" href="/#contact"
-        >Discuss your scope <span aria-hidden="true">↗</span></a
-      ><a class="button" href="/blog"
-        >Read our research <span aria-hidden="true">→</span></a>
+  <section class="site-container collection-hero capabilities-hero">
+    <div>
+      <p class="eyebrow">Bastco / Capabilities</p><h1>
+        Find the gap.<br /><em>Build the bridge.</em>
+      </h1><p class="collection-intro">
+        Security insight is only the start. Connect the investigation to the
+        engineering that moves you forward.
+      </p><div class="actions">
+        <a class="button button-primary" href="#contact"
+          >Discuss your scope <span aria-hidden="true">↗</span></a
+        ><a class="text-link" href="#services"
+          >Explore the disciplines <span aria-hidden="true">↓</span></a>
+      </div>
     </div>
+    <figure
+      class="capability-map"
+      aria-label="Security research connects infrastructure, software, and AI, with evidence at the center"
+    >
+      <div class="capability-map-label">CONNECTED BY SECURITY</div>
+      <svg viewBox="0 0 480 340" fill="none" aria-hidden="true"
+        ><circle
+          cx="240"
+          cy="170"
+          r="126"
+          stroke="#b5c9bd"
+          stroke-dasharray="4 9"></circle><path
+          d="M240 70v200M100 170h280"
+          stroke="#9bb7a7"
+          stroke-width="2"></path><circle
+          cx="240"
+          cy="170"
+          r="61"
+          fill="#fcfbf8"
+          stroke="#abc3b2"></circle><path
+          d="m221 160 19-9 19 9v19c0 15-19 24-19 24s-19-9-19-24v-19Z"
+          stroke="#456a53"
+          stroke-width="2"></path><path
+          d="m230 177 7 7 14-16"
+          stroke="#456a53"
+          stroke-width="2"></path><rect
+          x="179"
+          y="30"
+          width="122"
+          height="44"
+          rx="22"
+          fill="#fcfbf8"></rect><rect
+          x="319"
+          y="148"
+          width="141"
+          height="44"
+          rx="22"
+          fill="#eeeafa"></rect><rect
+          x="179"
+          y="267"
+          width="122"
+          height="44"
+          rx="22"
+          fill="#fcfbf8"></rect><rect
+          x="20"
+          y="148"
+          width="141"
+          height="44"
+          rx="22"
+          fill="#f5e5db"></rect><g
+          fill="#293d33"
+          font-size="12"
+          font-family="Inter, sans-serif"
+          text-anchor="middle"
+          ><text x="240" y="57">Infrastructure</text><text x="390" y="175"
+            >Software</text
+          ><text x="240" y="294">AI gateways</text><text x="90" y="175"
+            >Research</text
+          ></g
+        ></svg
+      >
+      <figcaption>Different disciplines. One connected approach.</figcaption>
+    </figure>
   </section>
   <ServicesSection
     services={services}
-    title="Four disciplines. A security-first mindset."
+    title="Four disciplines. One security-first mindset."
   />
-  <section class="section section-rule">
-    <div class="site-container about-grid">
+  <section class="section site-container engagement-section">
+    <div class="section-heading">
       <div>
-        <p class="eyebrow">Our product</p><h2 class="display-heading">
-          Meet Kifaru.<br />Made by Bastco.
+        <p class="eyebrow">From question to outcome</p><h2>
+          Less handoff.<br />More follow-through.
         </h2>
-      </div><div>
-        <p class="muted">
-          Our security assessment agent connects the terminal, local workbench,
-          structured findings, evidence, and reporting. Explore the workflow and
-          understand its operating boundaries before getting started.
-        </p><a class="text-link" href="/kifaru"
-          >Explore Kifaru <span aria-hidden="true">→</span></a>
-      </div>
+      </div><p>
+        Every engagement starts with an agreed scope—not a one-size-fits-all
+        package.
+      </p>
+    </div><div class="engagement-grid">
+      {
+        stages.map((stage) => (
+          <article>
+            <>
+              <span class="engagement-number">{stage.number}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.text}</p>
+            </>
+          </article>
+        ))
+      }
+    </div><p class="capabilities-note">
+      These are service capabilities, not published client case studies or
+      independently verified performance results.
+    </p>
+  </section>
+  <section class="site-container capability-product">
+    <div>
+      <p class="eyebrow">A Bastco product</p><h2>
+        Your model.<br />Meet your workbench.
+      </h2><p>
+        Kifaru connects local assessment work to structured findings and
+        evidence. Explore the workflow—and its operating boundaries.
+      </p><a class="button button-primary" href="/kifaru"
+        >Explore Kifaru <span aria-hidden="true">↗</span></a>
+    </div><div class="capability-product-path" aria-label="Kifaru workflow">
+      <span>Scope <i aria-hidden="true">↘</i></span><span
+        >Investigate <i aria-hidden="true">↘</i></span
+      ><span>Evidence <i aria-hidden="true">↘</i></span><span
+        >Human review <i aria-hidden="true">✓</i></span>
     </div>
   </section>
   <ContactSection />
