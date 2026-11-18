@@ -1,40 +1,92 @@
 ---
-import Layout from "../layouts/Layout.astro"
-
-import HeroSection from "../components/HeroSection.astro"
-import ServicesSection from "../components/ServicesSection.astro"
-import OpenSourceSection from "../components/OpenSourceSection.astro"
-import AboutSection from "../components/AboutSection.astro"
-import ContactSection from "../components/ContactSection.astro"
-
-import global_settings from "../data/global_settings.json"
-import home from "../data/home.json"
-import services from "../data/services.json"
-import opensource from "../data/opensource.json"
-
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import OpenSourceSection from '../components/OpenSourceSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+import WorkbenchPreview from '../components/WorkbenchPreview.astro';
+import services from '../data/services.json';
+import opensource from '../data/opensource.json';
+const steps = [
+  {
+    title: 'Align on the scope',
+    text: 'Agree on the objectives, authorized boundaries, and what a useful outcome looks like.',
+  },
+  {
+    title: 'Investigate & build',
+    text: 'Connect security assessment with the engineering needed to address the problem.',
+  },
+  {
+    title: 'Make it actionable',
+    text: 'Turn observations into prioritized findings, practical changes, and clear handover.',
+  },
+  {
+    title: 'Validate the result',
+    text: 'Review the evidence and retest the changes against the agreed objectives.',
+  },
+];
 ---
 
-<Layout title={ global_settings.title }>
-
-  <HeroSection
-    title={ home.hero_title }
-    content={ home.hero_content }
-  />
-
-  <ServicesSection
-    services={ services }
-    title={ home.services_title }
-  />
-
-  <OpenSourceSection
-    repos={ opensource }
-    title={ home.opensource_title }
-  />
-
-  <AboutSection
-    title={ home.about_title }
-  />
-
+<Layout>
+  <HeroSection />
+  <ServicesSection services={services} />
+  <section class="section site-container" id="kifaru">
+    <div class="product-feature">
+      <div class="product-copy">
+        <p class="product-label"><span>A BASTCO PRODUCT</span> Meet Kifaru</p>
+        <h2>Security assessment.<br />With an agent<br />on your side.</h2>
+        <p>
+          A security assessment agent for the terminal and local workbench.
+          Bring investigation, structured findings, evidence, and reporting into
+          one workflow.
+        </p>
+        <div class="actions">
+          <a class="button button-primary" href="/kifaru"
+            >Explore Kifaru <span aria-hidden="true">→</span></a
+          ><a
+            class="text-link"
+            href="https://install.bastco.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Installation guide <span aria-hidden="true">↗</span></a>
+        </div>
+        <p style="font-size:.72rem;margin-top:1.5rem">
+          For authorized assessments. Tools execute on your local host, not in a
+          sandbox.
+        </p>
+      </div>
+      <WorkbenchPreview />
+    </div>
+  </section>
+  <section class="section section-rule">
+    <div class="site-container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">How we work</p><h2>
+            Less ambiguity.<br />More forward motion.
+          </h2>
+        </div><p>
+          A shared understanding of scope, evidence, and outcomes. From the
+          first conversation to the final review.
+        </p>
+      </div>
+      <div class="process-grid">
+        {
+          steps.map((step, index) => (
+            <div class="process-step">
+              <>
+                <span>0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <OpenSourceSection repos={opensource} />
+  <AboutSection />
   <ContactSection />
-
 </Layout>

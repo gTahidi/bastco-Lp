@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Security & responsible use — Bastco"
+  description="How to approach authorized assessments, Kifaru’s operating boundaries, and sensitive security information when contacting Bastco."
+>
+  <div class="site-container">
+    <article class="prose-page">
+      <p class="eyebrow">Security &amp; responsible use</p><h1>
+        Trust starts with<br />clear boundaries.
+      </h1>
+      <p>
+        Security tools and services need an agreed scope, careful handling of
+        evidence, and human review. This page explains operating expectations,
+        not a certification or a guarantee of security.
+      </p>
+      <h2>Authorized assessments only</h2><p>
+        Before an assessment, agree on the authorized targets, permitted
+        activities, exclusions, and handling of findings. Do not use Bastco’s
+        tools against systems you do not have permission to assess.
+      </p>
+      <h2>Kifaru’s execution boundary</h2><p>
+        Kifaru is a Bastco security assessment agent that runs tools on the
+        local host. A target selection, working directory, action permission, or
+        Python environment is <strong
+          >not a filesystem or network sandbox</strong
+        >. The local dashboard’s authentication does not isolate agent
+        execution.
+      </p>
+      <ul>
+        <li>Use trusted workspaces and review requested actions.</li><li>
+          Do not treat the workbench as an isolated, untrusted multi-tenant
+          service.
+        </li><li>
+          Model-generated findings need independent review and reproduction.
+        </li><li>
+          Headless usage budgets react to reported consumption. They are not
+          guaranteed provider-side spending caps.
+        </li><li>
+          Review model-provider settings and data-handling requirements before
+          supplying sensitive assessment context.
+        </li>
+      </ul>
+      <p>
+        See the <a href="/kifaru">Kifaru overview</a> and <a
+          href="https://install.bastco.org"
+          target="_blank"
+          rel="noopener noreferrer">installation instructions</a
+        > before getting started.
+      </p>
+      <h2>Sharing security concerns</h2><p>
+        Please don’t send credentials, personal data, exploit payloads, or
+        vulnerability evidence through a scheduling form. <a href="/#contact"
+          >Arrange a conversation with Bastco</a
+        > to establish a suitable private reporting channel before sending sensitive
+        details.
+      </p><p>
+        This website does not publish a bounty program or a reporting SLA.
+        Publicly available information is not permission to test production systems.
+      </p>
+      <h2>This website</h2><p>
+        The public site is statically generated. The scheduling calendar is
+        optional and loaded only after you activate it. See <a href="/privacy"
+          >website privacy</a
+        > for the distinction between this site and third-party scheduling.
+      </p>
+    </article>
+  </div>
+</Layout>

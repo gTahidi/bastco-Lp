@@ -6,7 +6,6 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => {
     const derivedSlug =
-      post.slug ??
       post.id
         .replace(/\\/g, '/')
         .split('/')
@@ -32,7 +31,6 @@ const entrySlug = Array.isArray(slug) ? slug.join('/') : slug;
 const allPosts = await getCollection('blog');
 const post = allPosts.find((entry) => {
   const derivedSlug =
-    entry.slug ??
     entry.id
       .replace(/\\/g, '/')
       .split('/')

@@ -84,7 +84,9 @@ async function main() {
     throw new Error('Unable to create a slug from the title');
   }
 
-  const description = args.description?.trim() || 'TODO: add a concise summary for listings and meta tags.';
+  const description =
+    args.description?.trim() ||
+    'TODO: add a concise summary for listings and meta tags.';
   const author = args.author?.trim() || 'addcontent';
   const category = args.category?.trim() || 'Cybersecurity';
   const tags = (args.tags ?? 'TODO')
@@ -107,9 +109,9 @@ async function main() {
     '',
   ];
 
-  const body = draft?.trimStart() || `# ${title}
-
-## Introduction
+  const body =
+    draft?.trimStart() ||
+    `## Introduction
 
 TODO: Open with the concrete problem, result, or lesson.
 
@@ -130,7 +132,9 @@ TODO: End with pragmatic guidance or what BastCo will do next.
   const outputPath = path.join(outputDir, `${slug}.md`);
 
   await mkdir(outputDir, { recursive: true });
-  await writeFile(outputPath, `${frontmatter.join('\n')}${body.trimEnd()}\n`, { flag: 'wx' });
+  await writeFile(outputPath, `${frontmatter.join('\n')}${body.trimEnd()}\n`, {
+    flag: 'wx',
+  });
 
   console.log(outputPath);
 }

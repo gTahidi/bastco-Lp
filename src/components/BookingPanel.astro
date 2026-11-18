@@ -1,0 +1,59 @@
+<div class="booking-box" data-booking>
+  <h3>A conversation, not a commitment.</h3>
+  <p>
+    Bring your goals, questions, or a system you want to strengthen. Start with
+    a 15-minute introduction.
+  </p>
+  <div class="actions">
+    <button
+      type="button"
+      class="button button-primary"
+      data-load-booking
+      aria-expanded="false"
+      >Load scheduling calendar <span aria-hidden="true">↗</span></button
+    >
+    <a
+      class="text-link"
+      href="https://cal.com/bastco/15min"
+      target="_blank"
+      rel="noopener noreferrer"
+      >Open Cal.com <span aria-hidden="true">↗</span></a
+    >
+  </div>
+  <p class="booking-disclosure">
+    The embedded calendar connects to Cal.com only when you load it. Booking
+    details are handled by Cal.com. Please don’t include credentials or
+    vulnerability evidence. <a class="text-link" href="/privacy"
+      >Privacy details</a>
+  </p>
+  <div class="booking-embed" hidden>
+    <p role="status">
+      Calendar requested. If it doesn’t appear, use “Open Cal.com” above.
+    </p>
+  </div>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-booking]').forEach((panel) => {
+    const button = panel.querySelector<HTMLButtonElement>(
+      '[data-load-booking]',
+    );
+    const embed = panel.querySelector<HTMLElement>('.booking-embed');
+    button?.addEventListener('click', () => {
+      if (!embed || button.getAttribute('aria-expanded') === 'true') return;
+      const frame = document.createElement('iframe');
+      frame.src = 'https://cal.com/bastco/15min?embed=true&theme=dark';
+      frame.title = 'Book a 15-minute introduction with Bastco on Cal.com';
+      frame.className = 'booking-frame';
+      frame.referrerPolicy = 'no-referrer';
+      embed.hidden = false;
+      embed.append(frame);
+      button.setAttribute('aria-expanded', 'true');
+      button.textContent = 'Calendar loaded';
+    });
+  });
+</script>
+<noscript
+  ><p class="muted">
+    JavaScript is not required to book: use the “Open Cal.com” link above.
+  </p></noscript
+>

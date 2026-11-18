@@ -6,20 +6,20 @@
   --font-body: var(--font-inter), "ui-sans-serif", "system-ui", "sans-serif";
 
   /* Cybersecurity-themed dark surfaces */
-  --color-bs-surface-0: #0a0e1a;
-  --color-bs-surface-1: #0f1419;
-  --color-bs-surface-2: rgba(0, 174, 239, 0.05);
-  --color-bs-surface-3: #1a2332;
+  --color-bs-surface-0: #0b1216;
+  --color-bs-surface-1: #0b1216;
+  --color-bs-surface-2: #111b20;
+  --color-bs-surface-3: #273238;
 
   /* Cybersecurity accent colors - cyan/blue theme */
-  --color-bs-primary: #00aeef;
-  --color-bs-primary-dark: #0088cc;
-  --color-bs-secondary: #00d9ff;
+  --color-bs-primary: #7de3e0;
+  --color-bs-primary-dark: #a0eeeb;
+  --color-bs-secondary: #7de3e0;
   --color-bs-accent: #4ade80;
   --color-bs-warning: #fbbf24;
 
-  --color-bs-foreground-light: #e8f4f8;
-  --color-bs-foreground-dark: #94a3b8;
+  --color-bs-foreground-light: #f1f5f5;
+  --color-bs-foreground-dark: #a6b4ba;
 
   --color-current: currentColor;
 

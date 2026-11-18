@@ -1,84 +1,73 @@
 ---
-const { services, title } = Astro.props
-
-const iconMap: Record<string, string> = {
-  shield: "/content-images/logo-01.svg",
-  code: "/content-images/logo-02.svg",
-  cloud: "/content-images/logo-03.svg",
-  check: "/content-images/logo-04.svg",
-  ai: "/content-images/logo-08.svg",
+interface Props {
+  services: {
+    title: string;
+    slug: string;
+    icon: string;
+    description: string;
+    highlights: string[];
+  }[];
+  title?: string;
 }
-
-const cardBackgrounds = [
-  "/content-images/blackspike-wallpaper-01.avif",
-  "/content-images/blackspike-wallpaper-02.avif",
-  "/content-images/blackspike-wallpaper-03.avif",
-  "/content-images/blackspike-wallpaper-04.avif",
-]
+const { services, title = 'Expertise that connects the dots.' } = Astro.props;
+const orderedServices = [...services].sort((a, b) => {
+  const order = [
+    'cybersecurity-consulting',
+    'infrastructure-automation',
+    'enterprise-software',
+    'ai-gateways',
+  ];
+  return order.indexOf(a.slug) - order.indexOf(b.slug);
+});
 ---
 
-<section id="services" class="bs-container bs-mt-lg">
-
-  <!-- Title -->
-  <div class="text-center space-y-4 mb-12">
-    <span class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.4em] uppercase text-bs-secondary">
-      Services
-    </span>
-    <h2 class="bs-h2 text-center">{ title }</h2>
-    <p class="bs-body-text text-bs-foreground-dark max-w-3xl mx-auto">Security-first engineering, tailored to the realities of modern infrastructure.</p>
+<section id="services" class="section site-container">
+  <div class="section-heading">
+    <div><p class="eyebrow">What we do</p><h2>{title}</h2></div>
+    <p>
+      From identifying exposure to engineering the solution. Security is the
+      thread through every engagement.
+    </p>
   </div>
-
-  <!-- Service Cards -->
-  <div class="grid md:grid-cols-2 gap-8">
-
-    { services.map((service, index) => {
-      const icon = iconMap[service.icon] ?? "/content-images/logo-05.svg"
-      const background = cardBackgrounds[index % cardBackgrounds.length]
-
-      return (
-        <article class="relative overflow-hidden rounded-2xl border border-bs-surface-3/80 bg-bs-surface-2/70 backdrop-blur-sm transition transform-gpu duration-500 hover:-translate-y-2 hover:border-bs-primary/60">
-          <div class="absolute inset-0 opacity-15" aria-hidden="true">
-            <img src={background} alt="" class="w-full h-full object-cover" loading="lazy" decoding="async" />
-            <div class="absolute inset-0 bg-gradient-to-br from-bs-surface-1/90 via-bs-surface-1/60 to-transparent"></div>
+  <div class="services-grid">
+    {
+      orderedServices.map((service, index) => (
+        <article class="service-card">
+          <div class="card-number">
+            <>
+              <span>
+                0{index + 1} /{' '}
+                {service.icon === 'shield'
+                  ? 'ASSESS'
+                  : service.icon === 'cloud'
+                    ? 'STRENGTHEN'
+                    : service.icon === 'code'
+                      ? 'BUILD'
+                      : 'ENABLE'}
+              </span>
+              <span aria-hidden="true">↗</span>
+            </>
           </div>
-
-          <div class="relative p-8 flex flex-col gap-6">
-            <div class="flex items-center gap-4">
-              <div class="p-3 rounded-xl bg-bs-surface-1/80 ring-1 ring-bs-primary/30">
-                <img src={icon} alt="" class="w-10 h-10 object-contain" loading="lazy" decoding="async" />
-              </div>
-              <h3 class="bs-h3 text-bs-foreground-light">{ service.title }</h3>
-            </div>
-
-            <p class="bs-body-text text-bs-foreground-dark text-base leading-relaxed">
-              { service.description }
-            </p>
-
-            {service.highlights && (
-              <ul class="flex flex-col gap-2 text-sm text-bs-foreground-dark/90">
-                {service.highlights.map((point) => (
-                  <li class="flex items-start gap-2">
-                    <span class="mt-1 inline-flex h-2 w-2 rounded-full bg-bs-primary/70"></span>
-                    <span>{ point }</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <a href={`/services/${service.slug}`}
-               class="inline-flex items-center gap-2 text-sm font-semibold text-bs-primary/80 hover:text-bs-secondary transition-colors"
-            >
-              Learn more
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.25h13.5v13.5" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 16.5 18.75 5.25" />
-              </svg>
-            </a>
-          </div>
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+          <ul>
+            {service.highlights.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+          <a class="text-link" href={`/services/${service.slug}`}>
+            Explore{' '}
+            {service.slug === 'cybersecurity-consulting'
+              ? 'security consulting'
+              : service.slug === 'infrastructure-automation'
+                ? 'infrastructure'
+                : service.slug === 'enterprise-software'
+                  ? 'software engineering'
+                  : 'AI gateways'}{' '}
+            <span aria-hidden="true">→</span>
+          </a>
         </article>
-      )
-    })}
-
+      ))
+    }
   </div>
-
 </section>

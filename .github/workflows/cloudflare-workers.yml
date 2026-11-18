@@ -1,0 +1,76 @@
+name: Cloudflare Workers CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bastco-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Scan repository history for secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          scanner="$RUNNER_TEMP/bastco-gitleaks"
+          mkdir -p "$scanner"
+          curl --proto '=https' --tlsv1.2 --fail --location --retry 3 \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.30.0/gitleaks_8.30.0_linux_x64.tar.gz \
+            --output "$scanner/release.tar.gz"
+          echo "79a3ab579b53f71efd634f3aaf7e04a0fa0cf206b7ed434638d1547a2470a66e  $scanner/release.tar.gz" | sha256sum --check
+          tar -xzf "$scanner/release.tar.gz" -C "$scanner" gitleaks
+          "$scanner/gitleaks" git . --log-opts=--all --redact --no-banner
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Dependency security gate
+        run: npm audit --audit-level=high
+      - run: npx playwright install --with-deps chromium
+      - name: Types, build, artifact checks, accessibility and browser tests
+        run: npm run validate
+
+  deploy:
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Deploy static assets to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo 'Configure the CLOUDFLARE_API_TOKEN secret for the production environment before enabling automatic deployment.' >&2
+            exit 1
+          fi
+          npm run deploy
+      - name: Verify live pages, headers, caching, and routing
+        run: npm run test:deployment

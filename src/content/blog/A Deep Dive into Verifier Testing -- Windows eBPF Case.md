@@ -8,8 +8,6 @@ tags:
 category: "Cybersecurity"
 ---
 
-# A Deep Dive into Verifier Testing -- Windows eBPF Case
-
 **Author:** addcontent  
 **Date:** October 2025  
 

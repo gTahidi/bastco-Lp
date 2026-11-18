@@ -1,14 +1,14 @@
 {
-  "title": "BastCo - Cybersecurity & Software Consultancy",
-  "description": "We provide cybersecurity & software solutions to protect and enhance your business operations.",
-  "social_image": "/1200x630.jpg",
-  "base_url": "https://bastco.com",
-  "theme_color": "#0f1419",
+  "title": "Bastco — Security-led engineering",
+  "description": "Cybersecurity consulting, secure infrastructure, and software engineering. Meet Bastco and Kifaru, our security assessment agent.",
+  "social_image": "/bastco-social.png",
+  "base_url": "https://bastco.org",
+  "theme_color": "#0b1216",
   "nav": [
     { "title": "Home", "link": "/" },
     { "title": "Services", "link": "/#services" },
     { "title": "Kifaru", "link": "/kifaru" },
-    { "title": "Portfolio", "link": "/portfolio" },
+    { "title": "Capabilities", "link": "/portfolio" },
     { "title": "Blog", "link": "/blog" },
     { "title": "Contact", "link": "/#contact" }
   ],

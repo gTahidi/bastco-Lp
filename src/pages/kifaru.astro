@@ -1,113 +1,192 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import CalBookingEmbed from "../components/CalBookingEmbed.tsx";
-
-const title = "Kifaru - Autonomous Security Agent";
-const description = "CLI-based autonomous security agent for red teaming, powered by LLMs.";
+import Layout from '../layouts/Layout.astro';
+import WorkbenchPreview from '../components/WorkbenchPreview.astro';
+import BookingPanel from '../components/BookingPanel.astro';
+const features = [
+  {
+    title: 'Terminal & local workbench',
+    text: 'Work in the terminal or through the local dashboard. The Durable Workbench brings assessment conversations into both interfaces.',
+  },
+  {
+    title: 'Findings with structure',
+    text: 'Organize findings, evidence, and reporting. Treat model-generated observations as leads to validate, not automatically proven vulnerabilities.',
+  },
+  {
+    title: 'A headless path',
+    text: 'Run explicit assessment workflows with action permissions and usage budgets. Host execution requires acknowledgment; budget checks are reactive, not hard provider-side spending caps.',
+  },
+];
 ---
 
-<Layout title={title} description={description}>
-  <section class="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-4 font-mono bg-bs-surface-0 relative overflow-hidden">
-    
-    <!-- Background Grid Effect -->
-    <div class="absolute inset-0 z-0 opacity-10 pointer-events-none" 
-         style="background-image: linear-gradient(var(--color-bs-primary) 1px, transparent 1px), linear-gradient(90deg, var(--color-bs-primary) 1px, transparent 1px); background-size: 40px 40px;">
-    </div>
-
-    <!-- Terminal Window -->
-    <div class="w-full max-w-4xl relative z-10 bg-bs-surface-1 border border-bs-primary/30 rounded-lg overflow-hidden shadow-2xl shadow-bs-primary/10">
-      
-      <!-- Terminal Header -->
-      <div class="bg-bs-surface-3 px-4 py-2 flex items-center gap-2 border-b border-bs-primary/30 select-none">
-        <div class="flex gap-2">
-          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-          <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+<Layout
+  title="Kifaru by Bastco — Security assessment agent"
+  description="Meet Kifaru, Bastco’s Pi-based security assessment agent with a terminal, local workbench, structured findings, evidence, and reporting."
+>
+  <section class="product-hero site-container">
+    <div class="hero-grid">
+      <div>
+        <p class="product-label"><span>A BASTCO PRODUCT</span> Kifaru</p>
+        <h1>
+          A sharper way<br />to work through<br /><span
+            >security questions.</span>
+        </h1>
+        <p class="hero-description">
+          Kifaru is Bastco’s Pi-based security assessment agent. Investigate
+          from the terminal or local workbench, organize the evidence, and turn
+          findings into a report you can review.
+        </p>
+        <div class="actions">
+          <a
+            class="button button-primary"
+            href="https://install.bastco.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Get Kifaru <span aria-hidden="true">↗</span></a
+          ><a class="button" href="#demo"
+            >Discuss a demo <span aria-hidden="true">→</span></a>
         </div>
-        <div class="ml-4 text-xs text-bs-foreground-dark opacity-70 font-sans">kifaru — -bash — 80x24</div>
+        <p class="hero-note">
+          Linux · macOS · Windows &nbsp; / &nbsp; Your own model-provider access
+          is required.
+        </p>
       </div>
-
-      <!-- Terminal Content -->
-      <div class="p-6 md:p-12 space-y-10 text-bs-foreground-light">
-        
-        <!-- Hero Section -->
-        <div class="space-y-6">
-          <div class="flex items-center gap-2 text-bs-primary animate-pulse">
-            <span>&gt;</span>
-            <span class="typing-effect">./kifaru --init --mode=red-team</span>
-          </div>
-          
-          <div class="space-y-2">
-            <h1 class="text-4xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-bs-primary to-bs-secondary uppercase">
-              KIFARU
-            </h1>
-            <div class="h-1 w-24 bg-bs-primary"></div>
-          </div>
-          
-          <p class="text-xl md:text-2xl text-bs-foreground-dark max-w-2xl leading-relaxed">
-            The autonomous security agent. <br/>
-            <span class="text-bs-accent text-lg">Thinking like an attacker, so you don't have to.</span>
-          </p>
-        </div>
-
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-          <!-- Feature 1 -->
-          <div class="group border border-bs-primary/20 p-6 rounded hover:border-bs-primary/60 hover:bg-bs-primary/5 transition-all duration-300">
-            <h3 class="text-bs-secondary text-lg font-bold mb-3 flex items-center gap-2">
-              <span class="text-bs-primary opacity-50">&gt;</span> Red Teaming
-            </h3>
-            <p class="text-sm text-bs-foreground-dark leading-relaxed group-hover:text-bs-foreground-light transition-colors">
-              Continuous, automated adversary simulation. Kifaru probes your infrastructure to identify critical vulnerabilities before they are exploited.
-            </p>
-          </div>
-          
-           <!-- Feature 2 -->
-          <div class="group border border-bs-primary/20 p-6 rounded hover:border-bs-primary/60 hover:bg-bs-primary/5 transition-all duration-300">
-            <h3 class="text-bs-secondary text-lg font-bold mb-3 flex items-center gap-2">
-              <span class="text-bs-primary opacity-50">&gt;</span> LLM Powered
-            </h3>
-            <p class="text-sm text-bs-foreground-dark leading-relaxed group-hover:text-bs-foreground-light transition-colors">
-              Built on advanced large language models to reason through complex attack vectors and adapt to your unique environment.
-            </p>
-          </div>
-          
-           <!-- Feature 3 -->
-          <div class="group border border-bs-primary/20 p-6 rounded hover:border-bs-primary/60 hover:bg-bs-primary/5 transition-all duration-300">
-            <h3 class="text-bs-secondary text-lg font-bold mb-3 flex items-center gap-2">
-               <span class="text-bs-primary opacity-50">&gt;</span> Lightweight CLI
-            </h3>
-            <p class="text-sm text-bs-foreground-dark leading-relaxed group-hover:text-bs-foreground-light transition-colors">
-              A single binary with minimal footprint. Designed for speed, portability, and easy integration into CI/CD pipelines.
-            </p>
-          </div>
-          
-           <!-- Feature 4 -->
-          <div class="group border border-bs-primary/20 p-6 rounded hover:border-bs-primary/60 hover:bg-bs-primary/5 transition-all duration-300">
-            <h3 class="text-bs-secondary text-lg font-bold mb-3 flex items-center gap-2">
-               <span class="text-bs-primary opacity-50">&gt;</span> Extensible
-            </h3>
-            <p class="text-sm text-bs-foreground-dark leading-relaxed group-hover:text-bs-foreground-light transition-colors">
-              Modular architecture allowing custom plugins. Extend Kifaru's capabilities to match your specific security requirements.
-            </p>
-          </div>
-        </div>
-
-        <!-- Booking Section -->
-        <div class="pt-12 border-t border-bs-primary/20">
-             <div class="mb-8">
-               <p class="text-bs-accent font-bold mb-2">&gt; status_check</p>
-               <p class="text-bs-foreground-light">System online. Agents ready for deployment.</p>
-               <p class="text-bs-foreground-dark mt-2">Initialize consultation sequence below:</p>
-             </div>
-             
-             <!-- Cal Widget Wrapper -->
-             <div class="bg-bs-surface-0/80 border border-bs-primary/10 rounded-lg p-1 backdrop-blur-sm">
-                <CalBookingEmbed client:load />
-             </div>
-        </div>
-
+      <WorkbenchPreview />
+    </div>
+  </section>
+  <div class="site-container">
+    <nav class="product-subnav" aria-label="On this page">
+      <a href="#workflow">The workflow</a><a href="#capabilities"
+        >Capabilities</a
+      ><a href="#boundaries">Operating boundaries</a><a href="#demo"
+        >Talk to Bastco</a>
+    </nav>
+  </div>
+  <section id="workflow" class="section site-container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">The workflow</p><h2>
+          Keep the investigation<br />connected to the evidence.
+        </h2>
+      </div><p>
+        Human judgment stays in the loop. Use Kifaru to support an authorized
+        assessment, then review and reproduce the findings.
+      </p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <span>01 / SCOPE</span><h3>Define the target</h3><p>
+          Establish authorization and objectives. Target context guides the
+          agent; it does not create a technical sandbox.
+        </p>
+      </div>
+      <div class="process-step">
+        <span>02 / ASSESS</span><h3>Work with the agent</h3><p>
+          Use the terminal, local dashboard, or explicit headless workflow to
+          investigate the security question.
+        </p>
+      </div>
+      <div class="process-step">
+        <span>03 / RECORD</span><h3>Capture the findings</h3><p>
+          Keep observations and supporting evidence organized with structured
+          findings and reporting.
+        </p>
+      </div>
+      <div class="process-step">
+        <span>04 / VALIDATE</span><h3>Review before acting</h3><p>
+          Check the evidence, reproduce the issue, and prioritize remediation
+          with an operator’s judgment.
+        </p>
       </div>
     </div>
+  </section>
+  <section id="capabilities" class="section section-rule">
+    <div class="site-container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Purpose-built for assessment</p><h2>
+            Your tools. A connected workflow.
+          </h2>
+        </div><p>
+          A standalone executable with a Pi-based agent runtime. No Node or Bun
+          installation is needed to run the released binary.
+        </p>
+      </div>
+      <div class="feature-grid">
+        {
+          features.map((feature, index) => (
+            <article class="feature-tile">
+              <>
+                <span>0{index + 1}</span>
+                <h3>{feature.title}</h3>
+                <p>{feature.text}</p>
+              </>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section id="boundaries" class="section site-container">
+    <div class="boundary-panel">
+      <div>
+        <p class="eyebrow" style="color:#ebcf9a;margin-top:0">
+          Know the boundaries
+        </p><h2>Powerful tools need<br />clear expectations.</h2>
+      </div>
+      <div>
+        <ul>
+          <li>Use Kifaru only on targets you are authorized to assess.</li><li>
+            Agent tools run with the local host’s filesystem and network
+            permissions. A selected target or working directory is not
+            isolation.
+          </li><li>
+            Use trusted workspaces. The local dashboard’s authentication does
+            not sandbox agent execution.
+          </li><li>
+            Model-provider requests may transmit assessment context. Review your
+            provider configuration and data requirements.
+          </li><li>
+            Usage budgets are reactive estimates. They do not guarantee a hard
+            billing limit.
+          </li>
+        </ul><a class="text-link" href="/security"
+          >Security &amp; responsible use <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="section section-rule">
+    <div class="site-container about-grid">
+      <div>
+        <p class="eyebrow">Part of Bastco</p><h2 class="display-heading">
+          The product and<br />the people behind it.
+        </h2>
+      </div><div>
+        <p>
+          Kifaru is a Bastco product, alongside our cybersecurity and
+          engineering services. If you need help defining an assessment or
+          understanding how the agent fits your environment, talk with us before
+          getting started.
+        </p><div class="actions">
+          <a class="text-link" href="/services/cybersecurity-consulting"
+            >Bastco security consulting <span aria-hidden="true">→</span></a
+          ><a
+            class="text-link"
+            href="https://install.bastco.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Installation &amp; setup <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="demo" class="site-container contact-panel">
+    <div>
+      <p class="eyebrow">Talk to the team</p><h2>
+        See where Kifaru<br />fits your workflow.
+      </h2><p>
+        Discuss the product, deployment expectations, and the boundaries of an
+        authorized assessment with Bastco.
+      </p>
+    </div><BookingPanel />
   </section>
 </Layout>

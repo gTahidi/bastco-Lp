@@ -15,23 +15,28 @@ const posts = (await getCollection('blog')).sort(
 >
   <BlogHero />
 
-  {posts.length > 0 ? (
-    <section class="bs-container flex flex-col gap-12 py-20 pb-36 lg:py-28 min-h-[75vh]">
-      <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
-        {posts.map((post) => (
-          <PostCard post={post} />
-        ))}
-      </div>
-    </section>
-  ) : (
-    <section class="bs-container py-24 text-center text-bs-foreground-dark">
-      <p class="text-lg">
-        We are preparing our first set of stories. Check back soon or contact us at{' '}
-        <a class="text-bs-secondary hover:text-bs-foreground-light" href="mailto:insights@bastco.com">
-          insights@bastco.com
-        </a>{' '}
-        to request topics.
-      </p>
-    </section>
-  )}
+  {
+    posts.length > 0 ? (
+      <section class="bs-container flex flex-col gap-12 py-20 pb-36 lg:py-28 min-h-[75vh]">
+        <div class="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+          {posts.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </div>
+      </section>
+    ) : (
+      <section class="bs-container py-24 text-center text-bs-foreground-dark">
+        <p class="text-lg">
+          We are preparing our first set of stories. Check back soon or{' '}
+          <a
+            class="text-bs-secondary underline hover:text-bs-foreground-light"
+            href="/#contact"
+          >
+            contact Bastco
+          </a>{' '}
+          to suggest a topic.
+        </p>
+      </section>
+    )
+  }
 </Layout>
