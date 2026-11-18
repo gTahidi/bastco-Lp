@@ -101,7 +101,7 @@ test('mobile menu opens by keyboard, closes with Escape, and follows links', asy
     .click();
   await expect(page).toHaveURL(/\/kifaru\/?$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'security questions',
+    'See the risk.',
   );
 });
 
@@ -229,6 +229,82 @@ test('Workers serves security headers, immutable assets, and a true 404', async 
   const calendar = await request.get('/kifaru', { maxRedirects: 0 });
   expect(calendar.status()).toBe(307);
   expect(calendar.headers()['location']).toBe('/kifaru/');
+});
+
+test('workflow explorer supports buttons and keyboard without making network requests', async ({
+  page,
+}) => {
+  await page.goto('/kifaru/');
+  const explorer = page.locator('[data-workflow]');
+  const evidence = explorer.getByRole('button', { name: '03 Evidence' });
+  await evidence.click();
+  await expect(evidence).toHaveAttribute('aria-pressed', 'true');
+  await expect(
+    explorer.getByRole('heading', { name: 'A lead is not yet a finding.' }),
+  ).toBeVisible();
+  await expect(explorer.locator('[data-panel]:visible')).toHaveCount(1);
+  await evidence.press('ArrowRight');
+  await expect(
+    explorer.getByRole('button', { name: '04 Report' }),
+  ).toBeFocused();
+  await expect(
+    explorer.getByRole('heading', {
+      name: 'A clearer handoff. Not a black box.',
+    }),
+  ).toBeVisible();
+  await page.keyboard.press('Home');
+  await expect(
+    explorer.getByRole('button', { name: '01 Scope' }),
+  ).toBeFocused();
+  await expect(explorer.locator('[data-panel="0"]')).toBeVisible();
+});
+
+test('proposed pricing shows annual totals and remains explicitly non-purchasable', async ({
+  page,
+}) => {
+  await page.goto('/kifaru/');
+  const pricing = page.locator('[data-pricing]');
+  await expect(pricing).toContainText('not a live offer');
+  const prices = pricing.locator('[data-monthly]');
+  await expect(prices).toHaveText(['$0', '$19', '$79']);
+  await pricing.getByRole('button', { name: /Yearly/ }).click();
+  await expect(prices).toHaveText(['$0', '$190', '$790']);
+  await expect(pricing.locator('[data-price-period]')).toHaveText([
+    '/year',
+    '/year',
+    '/year',
+  ]);
+  await pricing.getByRole('button', { name: 'Monthly', exact: true }).click();
+  await expect(prices).toHaveText(['$0', '$19', '$79']);
+  await expect(
+    pricing.getByRole('link', { name: /Contact Bastco/ }),
+  ).toHaveAttribute('href', '#demo');
+  await expect(pricing).toContainText(
+    'No purchase or subscription is created here',
+  );
+});
+
+test('workflow and proposed pricing remain readable without JavaScript', async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await context.newPage();
+    await page.goto('http://127.0.0.1:4322/kifaru/');
+    await expect(page.locator('[data-panel]:visible')).toHaveCount(4);
+    await expect(page.locator('.workflow-controls')).toBeHidden();
+    await expect(page.locator('.billing-toggle')).toBeHidden();
+    await expect(page.locator('[data-monthly]')).toHaveText([
+      '$0',
+      '$19',
+      '$79',
+    ]);
+    await expect(
+      page.getByRole('link', { name: /Explore installation/ }),
+    ).toBeVisible();
+  } finally {
+    await context.close();
+  }
 });
 
 test('narrow viewports remain contained', async ({ page }) => {

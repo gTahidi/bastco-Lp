@@ -5,6 +5,7 @@ import '../assets/css/typography.css';
 import '../assets/css/layout.css';
 import '../assets/css/buttons.css';
 import '../assets/css/site.css';
+import '../assets/css/visual.css';
 import global_settings from '../data/global_settings.json';
 import FooterMain from '../components/FooterMain.astro';
 import HeaderMain from '../components/HeaderMain.astro';
@@ -12,11 +13,13 @@ interface Props {
   title?: string;
   description?: string;
   hideFooter?: boolean;
+  visual?: boolean;
 }
 const {
   title = global_settings.title,
   description = global_settings.description,
   hideFooter = false,
+  visual = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(global_settings.social_image, Astro.site);
@@ -42,7 +45,7 @@ const socialImage = new URL(global_settings.social_image, Astro.site);
     <meta property="og:image:alt" content="Bastco — security-led engineering" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body id="top">
+  <body id="top" class:list={{ visual }}>
     <a class="skip-link" href="#main">Skip to content</a>
     <HeaderMain settings={global_settings} />
     <main id="main" tabindex="-1"><slot /></main>

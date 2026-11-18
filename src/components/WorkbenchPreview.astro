@@ -1,45 +1,180 @@
+---
+const stages = [
+  {
+    name: 'Scope',
+    cue: 'Set the context',
+    title: 'Clear intent. Before the first command.',
+    description:
+      'Define the authorized target and the question you want to answer.',
+    label: 'Assessment context',
+    value: 'Your target',
+    detail: 'Authorization comes first. Target selection is not a sandbox.',
+    items: [
+      'Agree the objectives',
+      'Record the exclusions',
+      'Review host permissions',
+    ],
+  },
+  {
+    name: 'Observe',
+    cue: 'Follow the work',
+    title: 'An investigation you can follow.',
+    description:
+      'Work through a security question in the terminal or local workbench.',
+    label: 'Operator role',
+    value: 'In the loop',
+    detail:
+      'Tools execute with the local host’s filesystem and network permissions.',
+    items: [
+      'Review requested actions',
+      'Follow tool activity',
+      'Inspect observations',
+    ],
+  },
+  {
+    name: 'Evidence',
+    cue: 'Inspect the finding',
+    title: 'A lead is not yet a finding.',
+    description:
+      'Connect an observation to supporting evidence before drawing a conclusion.',
+    label: 'Review state',
+    value: 'Unverified',
+    detail:
+      'Model-generated observations require independent review and reproduction.',
+    items: [
+      'Inspect the evidence',
+      'Reproduce the behavior',
+      'Separate fact from inference',
+    ],
+  },
+  {
+    name: 'Report',
+    cue: 'Make it actionable',
+    title: 'A clearer handoff. Not a black box.',
+    description:
+      'Bring findings, evidence, and remediation notes into a report for human review.',
+    label: 'Next step',
+    value: 'Review',
+    detail: 'An operator validates the work before acting on a finding.',
+    items: [
+      'Document the scope',
+      'Connect findings to evidence',
+      'Prioritize the next steps',
+    ],
+  },
+];
+---
+
 <figure
   class="workbench"
-  style="margin:0"
-  aria-label="Illustrative Kifaru assessment workflow, not a live product screenshot"
+  data-workflow
+  aria-label="Interactive illustration of the Kifaru workflow"
 >
   <div class="workbench-bar">
     <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span
-    ><span>KIFARU / ASSESSMENT WORKFLOW</span><span aria-hidden="true">↗</span>
+    ><span>KIFARU / WORKFLOW EXPLORER</span>
   </div>
-  <div class="workbench-body">
-    <p class="workbench-kicker">FROM QUESTION TO FINDING</p>
-    <h3>A clearer picture of your security.</h3>
-    <div class="workflow-step">
-      <span>01</span><div>
-        <strong>Set the context</strong><p>
-          Define the authorized target and assessment objectives.
-        </p>
-      </div>
-    </div>
-    <div class="workflow-step">
-      <span>02</span><div>
-        <strong>Work through the assessment</strong><p>
-          Use the terminal or local workbench to investigate.
-        </p>
-      </div>
-    </div>
-    <div class="workflow-step">
-      <span>03</span><div>
-        <strong>Structure the findings</strong><p>
-          Organize observations, supporting evidence, and remediation.
-        </p>
-      </div>
-    </div>
-    <div class="workflow-step">
-      <span>04</span><div>
-        <strong>Review and report</strong><p>
-          Validate the evidence before acting on a finding.
-        </p>
-      </div>
-    </div>
+  <div
+    class="workflow-controls"
+    role="group"
+    aria-label="Assessment stages"
+    hidden
+  >
+    {
+      stages.map((stage, index) => (
+        <button
+          type="button"
+          data-stage={index}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          <span>0{index + 1}</span>
+          {stage.name}
+        </button>
+      ))
+    }
+  </div>
+  <div class="workflow-panels" aria-live="polite" aria-atomic="true">
+    {
+      stages.map((stage, index) => (
+        <section
+          class="workflow-panel"
+          data-panel={index}
+          aria-label={stage.name}
+        >
+          <p class="workbench-kicker">
+            0{index + 1} / {stage.cue}
+          </p>
+          <>
+            <h3>{stage.title}</h3>
+            <p class="workflow-description">{stage.description}</p>
+          </>
+          <div class="workflow-signal">
+            <>
+              <span class="signal-orbit" aria-hidden="true">
+                {['◎', '⌁', '◇', '↗'][index]}
+              </span>
+              <div>
+                <>
+                  <p>{stage.label}</p>
+                  <strong>{stage.value}</strong>
+                </>
+              </div>
+              <span class="signal-tag">ILLUSTRATION</span>
+            </>
+          </div>
+          <ul class="workflow-checklist">
+            {stage.items.map((item) => (
+              <li>
+                <span aria-hidden="true">↳</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p class="workflow-caution">{stage.detail}</p>
+        </section>
+      ))
+    }
   </div>
   <figcaption class="workbench-foot">
-    Workflow illustration · not a live assessment or product screenshot
+    Simulated workflow · not a product screenshot or live assessment
   </figcaption>
 </figure>
+<script>
+  document
+    .querySelectorAll<HTMLElement>('[data-workflow]')
+    .forEach((workbench) => {
+      const controls =
+        workbench.querySelector<HTMLElement>('.workflow-controls');
+      const buttons = [
+        ...workbench.querySelectorAll<HTMLButtonElement>('[data-stage]'),
+      ];
+      const panels = [
+        ...workbench.querySelectorAll<HTMLElement>('[data-panel]'),
+      ];
+      const select = (index: number) => {
+        buttons.forEach((button, i) =>
+          button.setAttribute('aria-pressed', String(i === index)),
+        );
+        panels.forEach((panel, i) => {
+          panel.hidden = i !== index;
+        });
+      };
+      select(0);
+      if (controls) controls.hidden = false;
+      buttons.forEach((button, index) => {
+        button.addEventListener('click', () => select(index));
+        button.addEventListener('keydown', (event) => {
+          let next: number;
+          if (event.key === 'ArrowRight') next = (index + 1) % buttons.length;
+          else if (event.key === 'ArrowLeft')
+            next = (index + buttons.length - 1) % buttons.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = buttons.length - 1;
+          else return;
+          event.preventDefault();
+          select(next);
+          buttons[next].focus();
+        });
+      });
+    });
+</script>

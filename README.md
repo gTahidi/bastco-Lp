@@ -152,7 +152,16 @@ Cal.com. No booking credentials belong in this codebase.
 - `src/pages/index.astro`: homepage and services/product hierarchy.
 - `src/pages/kifaru.astro`: Kifaru capabilities, boundaries, and setup links.
 - `src/components/`: shared navigation, footer, cards, booking, workflow illustration.
-- `src/assets/css/site.css`: visual system and responsive layouts.
+- `src/assets/css/site.css`: shared visual system and responsive layouts.
+- `src/assets/css/visual.css`: light, visual-first homepage and Kifaru variants;
+  service and reading routes retain their dark theme.
+- `src/components/WorkbenchPreview.astro`: keyboard-accessible, simulated workflow;
+  all four stages remain readable without JavaScript.
+- `src/components/PricingPreview.astro`: explicitly proposed Community/Pro/Team
+  pricing, with monthly/annual totals and enterprise contact only. This is not a
+  checkout, license activation flow, or finalized product offer.
+- `src/assets/images/`: decorative artwork from the supplied concept, with source
+  notes and responsive image processing.
 - `src/data/services.json`, `src/data/opensource.json`: service/tool summaries.
 - `src/content.config.ts`, `src/content/blog/`: research articles and schema.
 - `src/pages/security.astro`, `src/pages/privacy.astro`: factual security/privacy notices.
@@ -162,8 +171,13 @@ Unused theme images, placeholder portfolio data, legacy UI helpers, and their
 React/animation dependencies have been removed. The `/portfolio` URL remains as a
 capabilities overview, not a list of unverified case studies.
 
-Kifaru’s graphic is explicitly a workflow illustration, not a screenshot or a live
-assessment. Replace it only with reviewed, sanitized product images. Preserve human
+Kifaru’s interactive graphic is explicitly a workflow illustration, not a screenshot
+or a live assessment. Replace it only with reviewed, sanitized product images.
+The pricing preview does not promise plan-specific features, an SLA, or availability.
+Confirm license terms, fulfilment, support commitments, and artwork publishing rights
+before turning this direction into a live commercial offer. No provider-cost
+calculator or fixed per-assessment estimate is published without sourced rates and
+validated usage assumptions. Preserve human
 authorship on research. Do not invent client logos, metrics, addresses, service
 promises, certifications, or product isolation guarantees.
 

@@ -1,0 +1,141 @@
+---
+const plans = [
+  {
+    name: 'Community',
+    audience: 'For exploring',
+    monthly: 0,
+    annual: 0,
+    note: 'Proposed free proprietary edition',
+    description: 'An entry point for individual security builders.',
+  },
+  {
+    name: 'Pro',
+    audience: 'For independent practitioners',
+    monthly: 19,
+    annual: 190,
+    note: 'Proposed individual license',
+    description: 'A paid harness for your day-to-day assessment work.',
+  },
+  {
+    name: 'Team',
+    audience: 'For small crews',
+    monthly: 79,
+    annual: 790,
+    note: 'Proposed five-seat bundle',
+    description: 'A straightforward license bundle for a small team.',
+  },
+];
+---
+
+<section id="pricing" class="section site-container" data-pricing>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Pricing direction · not a live offer</p><h2>
+        Pay for the harness.<br />Not the tokens.
+      </h2>
+    </div><p>
+      Bring your own model-provider access. These are proposed prices;
+      availability, license terms, and plan features are not finalized.
+    </p>
+  </div>
+  <div
+    class="billing-toggle"
+    role="group"
+    aria-label="Proposed billing period"
+    hidden
+  >
+    <button type="button" data-billing="monthly" aria-pressed="true"
+      >Monthly</button
+    ><button type="button" data-billing="annual" aria-pressed="false"
+      >Yearly <span>2 months less</span></button>
+  </div>
+  <div class="pricing-grid">
+    {
+      plans.map((plan) => (
+        <article
+          class:list={[
+            'pricing-card',
+            { 'pricing-featured': plan.name === 'Pro' },
+          ]}
+        >
+          <>
+            <p class="eyebrow">{plan.audience}</p>
+            <h3>{plan.name}</h3>
+            <p>{plan.description}</p>
+          </>
+          <div class="plan-price">
+            <>
+              <strong data-monthly={plan.monthly} data-annual={plan.annual}>
+                ${plan.monthly}
+              </strong>
+              <span data-price-period>/month</span>
+            </>
+          </div>
+          <p class="plan-note">
+            {plan.note}
+            <br />
+            <span data-billing-note>
+              {plan.monthly === 0
+                ? 'Model usage separate'
+                : 'Monthly price · model usage separate'}
+            </span>
+          </p>
+          <a class="button" href="#demo">
+            Discuss {plan.name.toLowerCase()} <span aria-hidden="true">↗</span>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+  <div class="enterprise-banner">
+    <div>
+      <p class="eyebrow">Enterprise is a conversation</p><h3>
+        Your requirements. An agreed scope.
+      </h3><p>
+        For organization-wide use, procurement, or specific deployment and
+        support needs, contact Bastco. No enterprise checkout.
+      </p>
+    </div><a href="#demo" class="button button-primary"
+      >Contact Bastco <span aria-hidden="true">↗</span></a>
+  </div>
+  <p class="pricing-disclaimer">
+    Planning preview only. No purchase or subscription is created here. Final
+    pricing and entitlement details will be published before sales open.
+  </p>
+</section>
+<script>
+  document
+    .querySelectorAll<HTMLElement>('[data-pricing]')
+    .forEach((section) => {
+      const toggle = section.querySelector<HTMLElement>('.billing-toggle');
+      if (toggle) toggle.hidden = false;
+      const buttons =
+        section.querySelectorAll<HTMLButtonElement>('[data-billing]');
+      buttons.forEach((button) =>
+        button.addEventListener('click', () => {
+          const annual = button.dataset.billing === 'annual';
+          buttons.forEach((item) =>
+            item.setAttribute('aria-pressed', String(item === button)),
+          );
+          section
+            .querySelectorAll<HTMLElement>('.pricing-card')
+            .forEach((card) => {
+              const price = card.querySelector<HTMLElement>('[data-monthly]');
+              const period = card.querySelector<HTMLElement>(
+                '[data-price-period]',
+              );
+              const note = card.querySelector<HTMLElement>(
+                '[data-billing-note]',
+              );
+              if (!price || !period || !note) return;
+              price.textContent = `$${annual ? price.dataset.annual : price.dataset.monthly}`;
+              period.textContent = annual ? '/year' : '/month';
+              note.textContent =
+                price.dataset.monthly === '0'
+                  ? 'Model usage separate'
+                  : `${annual ? 'Annual' : 'Monthly'} price · model usage separate`;
+            });
+        }),
+      );
+    });
+</script>
