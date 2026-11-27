@@ -1,17 +1,22 @@
 ---
 import BookingPanel from './BookingPanel.astro';
+
+interface Props {
+  description?: string;
+}
+const {
+  description = 'We can talk through an application assessment, infrastructure changes, or whether Kifaru fits your team’s needs.',
+} = Astro.props;
 ---
 
 <section id="contact" class="site-container contact-panel">
   <div>
-    <p class="eyebrow">Let’s build something resilient</p><h2>
-      Your next move.<br />Made with confidence.
+    <p class="eyebrow">Contact Bastco</p><h2>
+      Tell us what<br />you’re working on
     </h2><p>
-      Whether you’re assessing an application, strengthening infrastructure, or
-      exploring Kifaru, start with a conversation about what matters to your
-      team.
+      {description}
     </p><a class="text-link" href="/kifaru"
-      >Get to know Kifaru first <span aria-hidden="true">→</span></a>
+      >Learn about Kifaru <span aria-hidden="true">→</span></a>
   </div>
   <BookingPanel />
 </section>

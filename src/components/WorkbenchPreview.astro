@@ -3,14 +3,14 @@ const stages = [
   {
     name: 'Scope',
     cue: 'Set the context',
-    title: 'Clear intent. Before the first command.',
+    title: 'Set the scope before you start.',
     description:
       'Define the authorized target and the question you want to answer.',
     label: 'Assessment context',
     value: 'Your target',
     detail: 'Authorization comes first. Target selection is not a sandbox.',
     items: [
-      'Agree the objectives',
+      'Agree on the objectives',
       'Record the exclusions',
       'Review host permissions',
     ],
@@ -34,7 +34,7 @@ const stages = [
   {
     name: 'Evidence',
     cue: 'Inspect the finding',
-    title: 'A lead is not yet a finding.',
+    title: 'Check the evidence behind a lead.',
     description:
       'Connect an observation to supporting evidence before drawing a conclusion.',
     label: 'Review state',
@@ -49,8 +49,8 @@ const stages = [
   },
   {
     name: 'Report',
-    cue: 'Make it actionable',
-    title: 'A clearer handoff. Not a black box.',
+    cue: 'Prepare the handoff',
+    title: 'Write a report someone else can review.',
     description:
       'Bring findings, evidence, and remediation notes into a report for human review.',
     label: 'Next step',
@@ -136,7 +136,7 @@ const stages = [
     }
   </div>
   <figcaption class="workbench-foot">
-    Simulated workflow · not a product screenshot or live assessment
+    This walkthrough uses a mock interface. It does not run an assessment.
   </figcaption>
 </figure>
 <script>

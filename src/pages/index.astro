@@ -1,48 +1,69 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HeroSection from '../components/HeroSection.astro';
-import ServicesSection from '../components/ServicesSection.astro';
 import OpenSourceSection from '../components/OpenSourceSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import WorkbenchPreview from '../components/WorkbenchPreview.astro';
-import services from '../data/services.json';
 import opensource from '../data/opensource.json';
+
+const offerings = [
+  {
+    title: 'Agentic red teaming',
+    text: 'We build AI agent harnesses for authorized red team exercises. Your team reviews the evidence and confirms which controls need work.',
+  },
+  {
+    title: 'Agentic blue teaming',
+    text: 'We build agent harnesses that help analysts review alerts and test detections. Analysts decide what to escalate.',
+  },
+  {
+    title: 'Automated scanning',
+    text: 'We help automate recurring scans of approved assets and route findings to the teams that own them.',
+  },
+  {
+    title: 'Continuous threat exposure management (CTEM)',
+    text: 'We help you set up and run a program to rank exposures by risk, assign fixes, and verify the work.',
+  },
+];
+
 const steps = [
   {
-    title: 'Align on the scope',
-    text: 'Agree on the objectives, authorized boundaries, and what a useful outcome looks like.',
+    title: 'Agree on the scope',
+    text: 'We set the objectives, authorized assets, and limits with your team.',
   },
   {
-    title: 'Investigate & build',
-    text: 'Connect security assessment with the engineering needed to address the problem.',
+    title: 'Fit the tools to the job',
+    text: 'We agree on what to automate and which actions need a person’s approval.',
   },
   {
-    title: 'Make it actionable',
-    text: 'Turn observations into prioritized findings, practical changes, and clear handover.',
+    title: 'Review the evidence',
+    text: 'We check findings with your team and agree on what to fix first.',
   },
   {
-    title: 'Validate the result',
-    text: 'Review the evidence and retest the changes against the agreed objectives.',
+    title: 'Verify the fixes',
+    text: 'We retest agreed fixes and identify what still needs follow-up.',
   },
 ];
 ---
 
-<Layout visual>
+<Layout
+  visual
+  title="Kifaru, your AI red teammate | Bastco"
+  description="Meet Kifaru, your AI red teammate for authorized assessments. Explore Bastco’s red and blue team harnesses, automated scanning, and exposure management services."
+>
   <HeroSection />
-  <ServicesSection services={services} />
   <section class="section site-container" id="kifaru">
     <div class="product-feature">
       <div class="product-copy">
-        <p class="product-label"><span>A BASTCO PRODUCT</span> Meet Kifaru</p>
-        <h2>Your question.<br />A clearer<br />investigation.</h2>
+        <p class="product-label"><span>FIELD NOTES</span> Inside Kifaru</p>
+        <h2>From a question to a finding</h2>
         <p>
-          Meet Kifaru: your model, a local security workbench, and evidence you
-          can follow. Explore the workflow one step at a time.
+          What did the agent observe? What still needs checking? Step through
+          a sample assessment in the workbench to see how a reviewer makes that call.
         </p>
         <div class="actions">
           <a class="button button-primary" href="/kifaru"
-            >Explore Kifaru <span aria-hidden="true">→</span></a
+            >View Kifaru details <span aria-hidden="true">→</span></a
           ><a
             class="text-link"
             href="https://install.bastco.org"
@@ -59,16 +80,48 @@ const steps = [
       <WorkbenchPreview />
     </div>
   </section>
+  <section
+    id="services"
+    class="section site-container"
+    aria-labelledby="services-heading"
+  >
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Bastco services</p>
+        <h2 id="services-heading">Security testing and exposure management</h2>
+      </div>
+      <p>
+        Bring us a control you need to test, an alert you can’t explain, or a
+        backlog of scan findings. We’ll work with your team to scope the job.
+      </p>
+    </div>
+    <div class="services-grid">
+      {offerings.map((offering, index) => (
+        <article class="service-card">
+          <div class="card-number" aria-hidden="true"><span>0{index + 1}</span></div>
+          <h3>{offering.title}</h3>
+          <p>{offering.text}</p>
+        </article>
+      ))}
+    </div>
+    <div class="actions mt-8">
+      <a class="button button-primary" href="#contact"
+        >Discuss your scope <span aria-hidden="true">→</span></a
+      >
+      <a class="text-link" href="/portfolio"
+        >See our engineering capabilities <span aria-hidden="true">→</span></a
+      >
+    </div>
+  </section>
   <section class="section section-rule">
     <div class="site-container">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">How we work</p><h2>
-            Less ambiguity.<br />More forward motion.
-          </h2>
-        </div><p>
-          A shared understanding of scope, evidence, and outcomes. From the
-          first conversation to the final review.
+          <p class="eyebrow">How we work</p>
+          <h2>From scope to retest</h2>
+        </div>
+        <p>
+          We agree on what success looks like before work starts.
         </p>
       </div>
       <div class="process-grid">
@@ -88,5 +141,5 @@ const steps = [
   </section>
   <OpenSourceSection repos={opensource} />
   <AboutSection />
-  <ContactSection />
+  <ContactSection description="Tell us what you need to test, monitor, or fix. We can discuss a scoped engagement or show you how Kifaru works." />
 </Layout>

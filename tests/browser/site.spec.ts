@@ -71,6 +71,39 @@ for (const width of [390, 1440]) {
   });
 }
 
+test('Kifaru leads the homepage and visitors can reach the four services and contact', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle('Kifaru, your AI red teammate | Bastco');
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Kifaru, your\s*AI red teammate\./ }),
+  ).toBeVisible();
+  const hero = page.locator('.field-hero');
+  await hero.getByRole('link', { name: 'Explore Kifaru' }).click();
+  await expect(page).toHaveURL(/\/kifaru\/$/);
+
+  await page.goto('/');
+  await expect(page.locator('main > section').nth(1)).toHaveAttribute(
+    'id',
+    'kifaru',
+  );
+  await hero.getByRole('link', { name: 'Explore security services' }).click();
+  await expect(page).toHaveURL(/#services$/);
+  const services = page.getByRole('region', {
+    name: 'Security testing and exposure management',
+  });
+  await expect(services.getByRole('heading', { level: 3 })).toHaveText([
+    'Agentic red teaming',
+    'Agentic blue teaming',
+    'Automated scanning',
+    'Continuous threat exposure management (CTEM)',
+  ]);
+  await services.getByRole('link', { name: 'Discuss your scope' }).click();
+  await expect(page).toHaveURL(/#contact$/);
+  await expect(page.locator('#contact')).toBeInViewport();
+});
+
 test('mobile menu opens by keyboard, closes with Escape, and follows links', async ({
   page,
 }) => {
@@ -100,9 +133,9 @@ test('mobile menu opens by keyboard, closes with Escape, and follows links', asy
     .getByRole('link', { name: 'Kifaru', exact: true })
     .click();
   await expect(page).toHaveURL(/\/kifaru\/?$/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    'See the risk.',
-  );
+  await expect(
+    page.getByRole('heading', { level: 1, name: /Kifaru, your\s*AI red teammate\./ }),
+  ).toBeVisible();
 });
 
 for (const route of ['/', '/kifaru']) {
@@ -240,7 +273,7 @@ test('workflow explorer supports buttons and keyboard without making network req
   await evidence.click();
   await expect(evidence).toHaveAttribute('aria-pressed', 'true');
   await expect(
-    explorer.getByRole('heading', { name: 'A lead is not yet a finding.' }),
+    explorer.getByRole('heading', { name: 'Check the evidence behind a lead.' }),
   ).toBeVisible();
   await expect(explorer.locator('[data-panel]:visible')).toHaveCount(1);
   await evidence.press('ArrowRight');
@@ -249,7 +282,7 @@ test('workflow explorer supports buttons and keyboard without making network req
   ).toBeFocused();
   await expect(
     explorer.getByRole('heading', {
-      name: 'A clearer handoff. Not a black box.',
+      name: 'Write a report someone else can review.',
     }),
   ).toBeVisible();
   await page.keyboard.press('Home');
