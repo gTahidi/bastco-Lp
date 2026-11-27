@@ -79,16 +79,15 @@ test('Kifaru leads the homepage and visitors can reach the four services and con
   await expect(
     page.getByRole('heading', { level: 1, name: /Kifaru, your\s*AI red teammate\./ }),
   ).toBeVisible();
-  const hero = page.locator('.field-hero');
+  const hero = page.locator('.showcase-hero');
+  await hero.getByRole('link', { name: 'Try the demo' }).click();
+  await expect(page).toHaveURL(/#kifaru$/);
+  await expect(page.locator('#kifaru')).toBeInViewport();
   await hero.getByRole('link', { name: 'Explore Kifaru' }).click();
   await expect(page).toHaveURL(/\/kifaru\/$/);
 
   await page.goto('/');
-  await expect(page.locator('main > section').nth(1)).toHaveAttribute(
-    'id',
-    'kifaru',
-  );
-  await hero.getByRole('link', { name: 'Explore security services' }).click();
+  await page.locator('.desktop-nav').getByRole('link', { name: 'Services' }).click();
   await expect(page).toHaveURL(/#services$/);
   const services = page.getByRole('region', {
     name: 'Security testing and exposure management',
@@ -102,6 +101,31 @@ test('Kifaru leads the homepage and visitors can reach the four services and con
   await services.getByRole('link', { name: 'Discuss your scope' }).click();
   await expect(page).toHaveURL(/#contact$/);
   await expect(page.locator('#contact')).toBeInViewport();
+});
+
+test('the sample workbench links the conversation, evidence and handoff without JavaScript', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  try {
+    const page = await context.newPage();
+    await page.goto('http://127.0.0.1:4322/#kifaru');
+    const demo = page.getByRole('region', { name: 'Sign-in audit review' });
+    const requests: string[] = [];
+    page.on('request', request => requests.push(request.url()));
+    const task = demo.getByRole('radio', { name: 'Task', exact: true });
+    await expect(task).toBeChecked();
+    await demo.getByText('Activity', { exact: false }).first().click();
+    await expect(demo.getByText('Read the staging retention policy.')).toBeVisible();
+    await task.focus();
+    await task.press('ArrowRight');
+    await expect(demo.getByRole('radio', { name: 'Finding' })).toBeChecked();
+    await expect(demo.getByText('14 days configured')).toBeVisible();
+    await expect(demo.getByText('Task conversation', { exact: true })).toBeHidden();
+    await demo.getByRole('radio', { name: 'Report' }).check();
+    await expect(demo.getByText('Reviewer handoff')).toBeVisible();
+    expect(requests).toEqual([]);
+  } finally {
+    await context.close();
+  }
 });
 
 test('mobile menu opens by keyboard, closes with Escape, and follows links', async ({

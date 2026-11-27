@@ -1,0 +1,111 @@
+<section class="console" id="kifaru" tabindex="-1" aria-labelledby="demo-title">
+  <header class="bar">
+    <span class="wordmark"><span class="mark" aria-hidden="true">K</span> Kifaru <span class="divider">/</span> Workbench</span>
+    <span class="tag">Interactive demo</span>
+  </header>
+  <div class="case">
+    <p class="overline">Sample workspace <span>/</span> Task 014</p>
+    <h2 id="demo-title">Sign-in audit review</h2>
+    <p>Inspect a sample task, its finding, and the report draft.</p>
+  </div>
+  <fieldset class="switcher">
+    <legend class="sr-only">Workbench view</legend>
+    <label><input type="radio" name="demo-view" value="task" checked />Task</label>
+    <label><input type="radio" name="demo-view" value="finding" />Finding</label>
+    <label><input type="radio" name="demo-view" value="report" />Report</label>
+  </fieldset>
+
+  <div class="surface">
+    <section class="pane task" aria-label="Task conversation">
+      <p class="overline">Task conversation</p>
+      <div class="prompt">
+        <strong>Operator</strong>
+        <p>Our staging policy calls for 30 days of sign-in history. Does the configuration match?</p>
+      </div>
+      <div class="reply">
+        <strong>Kifaru</strong>
+        <p>The saved policy says 30 days. The staging configuration says 14.
+          I’ve attached both records to the finding for review.</p>
+      </div>
+      <details>
+        <summary>Activity <span>2 records compared</span></summary>
+        <ul><li>Read the staging retention policy.</li><li>Compared it with the saved configuration snapshot.</li></ul>
+      </details>
+    </section>
+
+    <section class="pane finding" aria-label="Finding and evidence">
+      <p class="overline">Finding 01 <span>/</span> Needs review</p>
+      <h3>Sign-in retention falls short of policy</h3>
+      <p>The settings differ by 16 days. The snapshot alone does not show whether older records still exist.</p>
+      <details open>
+        <summary>Evidence <span>2 attachments</span></summary>
+        <dl>
+          <div><dt>Retention policy</dt><dd>30 days required</dd></div>
+          <div><dt>Staging configuration</dt><dd>14 days configured</dd></div>
+        </dl>
+      </details>
+    </section>
+
+    <section class="pane report" aria-label="Report draft">
+      <p class="overline">Report draft <span>/</span> Version 1</p>
+      <h3>Staging sign-in review</h3>
+      <p>The configuration doesn’t meet the retention policy. We haven’t verified the age of the oldest stored event.</p>
+      <div class="handoff">
+        <strong>Reviewer handoff</strong>
+        <p>Ask the staging owner to confirm how long events are kept. Recheck the setting after the owner updates it.</p>
+      </div>
+    </section>
+  </div>
+  <footer class="foot">Sample data only. This demo does not run tools or scan a target.</footer>
+</section>
+
+<style>
+  .console {
+    scroll-margin-top: 6rem;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: #202c34;
+    color: #f4f6f2;
+    border: 1px solid #33454e;
+    box-shadow: 0 16px 36px -22px #202c3477;
+  }
+  .bar, .foot { padding: .85rem clamp(1rem, 3vw, 1.6rem); }
+  .bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem; border-bottom: 1px solid #435159; }
+  .wordmark { display: inline-flex; align-items: center; gap: .5rem; font-size: .83rem; font-weight: 600; }
+  .mark { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border-radius: .4rem; background: #bbdec8; color: #263c35; }
+  .divider, .overline span { opacity: .7; }
+  .tag { border: 1px solid #5a7067; color: #b8e0cb; border-radius: 2rem; padding: .2rem .6rem; font-size: .7rem; }
+  .case, .surface, .switcher { padding-inline: clamp(1rem, 3vw, 1.6rem); }
+  .case { padding-top: 1.3rem; }
+  .overline { font-size: .68rem; letter-spacing: .11em; text-transform: uppercase; font-weight: 600; }
+  .case .overline { color: #bbcec5; }
+  .case h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: -.045em; margin: .3rem 0; }
+  .case > p:last-child { margin: 0; font-size: .88rem; color: #d5dedb; }
+  .switcher { border: 0; display: flex; gap: .3rem; margin: 1rem 0 0; }
+  .switcher label { position: relative; cursor: pointer; min-height: 2.65rem; padding: .65rem 1rem; border-radius: .65rem .65rem 0 0; font-size: .85rem; font-weight: 600; color: #d7e0db; }
+  .switcher input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; cursor: pointer; }
+  .switcher label:has(:checked) { background: #fafaf6; color: #202c34; }
+  .switcher label:has(:focus-visible) { outline: 2px solid #b75a41; outline-offset: -4px; }
+  .surface { background: #fafaf6; color: #26343a; padding-block: 1.25rem; }
+  .pane { min-height: 17.5rem; }
+  .pane .overline { color: #52675c; margin: 0 0 .85rem; }
+  .pane h3 { margin: 0 0 .65rem; font-size: 1.22rem; letter-spacing: -.025em; }
+  .pane p:not(.overline), .pane details { font-size: .87rem; line-height: 1.55; }
+  .pane strong { font-size: .78rem; }
+  .pane p:not(.overline) { margin: .15rem 0 .75rem; }
+  .prompt, .handoff { background: #e8eee7; padding: .65rem 1rem; border-radius: .7rem; }
+  .prompt p:last-child, .handoff p:last-child { margin-bottom: 0; }
+  .reply, .handoff { margin-top: .8rem; }
+  details { margin-top: .8rem; border: 1px solid #cfd7ce; border-radius: .55rem; background: #fff; }
+  summary { cursor: pointer; padding: .65rem .8rem; font-weight: 600; }
+  summary span { color: #52615a; font-size: .76rem; font-weight: 400; margin-left: .5rem; }
+  dl, ul { margin: 0; padding: 0 .8rem .65rem; }
+  ul { padding-left: 1.8rem; list-style: disc; }
+  dl div { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid #dde4dc; padding: .55rem 0; }
+  dd { margin: 0; font-weight: 600; }
+  .foot { font-size: .73rem; color: #d2dcd6; }
+  .console:has([value="task"]:checked) .pane:not(.task),
+  .console:has([value="finding"]:checked) .pane:not(.finding),
+  .console:has([value="report"]:checked) .pane:not(.report) { display: none; }
+</style>
