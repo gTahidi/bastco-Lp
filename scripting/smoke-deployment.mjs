@@ -43,7 +43,7 @@ assert.ok(!home.headers.get('cache-control')?.includes('immutable'));
 assert.ok(home.headers.get('cache-control')?.includes('no-transform'));
 const html = await home.text();
 assert.match(html, /<link rel="canonical" href="https:\/\/bastco\.org\/"/);
-assert.match(html, /Build forward/);
+assert.match(html, /<title>Kifaru, your AI red teammate \| Bastco<\/title>/);
 assert.doesNotMatch(html, /<astro-island\b|<iframe\b/);
 if (base.hostname.endsWith('.workers.dev')) {
   assert.equal(home.headers.get('x-robots-tag'), 'noindex');
