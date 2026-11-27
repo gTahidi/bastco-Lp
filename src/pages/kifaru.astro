@@ -1,166 +1,84 @@
 ---
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import WorkbenchPreview from '../components/WorkbenchPreview.astro';
+import HeroSection from '../components/HeroSection.astro';
 import BookingPanel from '../components/BookingPanel.astro';
 import PricingPreview from '../components/PricingPreview.astro';
-import workspace from '../assets/images/kifaru-workspace.webp';
-import models from '../assets/images/kifaru-models.webp';
 ---
 
 <Layout
   visual
   title="Kifaru by Bastco | Your AI red teammate"
-  description="Kifaru is your AI red teammate for authorized security assessments. Choose a supported model provider and review the evidence in the terminal or local workbench."
+  description="Inspect a sample Kifaru finding, see the evidence behind it, and learn how local execution, model access, and proposed licensing work."
 >
-  <section class="hero editorial-hero kifaru-hero">
-    <Image
-      src={workspace}
-      alt=""
-      class="editorial-image"
-      widths={[640, 960, 1440]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="site-container editorial-content">
-      <p class="product-label"><span>A BASTCO PRODUCT</span> Kifaru</p>
-      <p class="eyebrow">A local-first security assessment agent</p>
-      <h1>Kifaru, your<br /><em>AI red teammate.</em></h1>
-      <p class="hero-description">
-        Use a supported model provider to investigate security questions.
-        Review the evidence in the terminal or local workbench.
-      </p>
-      <div class="actions">
-        <a
-          class="button button-primary"
-          href="https://install.bastco.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Explore installation <span aria-hidden="true">↗</span></a
-        ><a class="button" href="#workflow"
-          >Try the workflow <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-pills">
-        <span>◎ Local execution</span><span>◇ Your model-provider access</span
-        ><span>↗ Human review</span>
-      </div>
-    </div>
-  </section>
+  <HeroSection productPage />
   <div class="site-container">
     <nav class="product-subnav" aria-label="On this page">
-      <a href="#workflow">Walkthrough</a><a href="#models">Your model</a><a
-        href="#pricing">Proposed pricing</a
-      ><a href="#boundaries">Operating boundaries</a>
+      <a href="#models">Model access</a>
+      <a href="#boundaries">Operating limits</a>
+      <a href="#pricing">Proposed pricing</a>
+      <a href="#demo">Talk to Bastco</a>
     </nav>
   </div>
-  <section id="workflow" class="section site-container experience-grid">
-    <div class="experience-copy">
-      <p class="eyebrow">Workflow walkthrough</p><h2>
-        How an assessment<br />takes shape
-      </h2><p>
-        Walk through the four stages of an authorized assessment.
-      </p><div class="experience-notes">
-        <span>01 / Terminal &amp; local workbench</span><span
-          >02 / Structured findings &amp; evidence</span
-        ><span>03 / Human judgment throughout</span>
-      </div><p class="small-note">
-        This example uses a mock interface and does not scan a target.
+
+  <section id="models" class="section site-container cost-story" aria-labelledby="models-heading">
+    <div>
+      <p class="eyebrow">Model access</p>
+      <h2 id="models-heading">Bring your model</h2>
+      <p>
+        Connect a supported model provider. Kifaru runs tools on your machine,
+        but model requests can send assessment context to the provider. Check
+        your provider’s data settings before sharing evidence.
       </p>
     </div>
-    <WorkbenchPreview />
-  </section>
-  <section id="models" class="site-container">
-    <div class="model-story">
-      <Image
-        src={models}
-        alt=""
-        widths={[640, 960, 1440]}
-        sizes="(max-width: 760px) 100vw, 85vw"
-        loading="lazy"
-      /><div class="model-story-copy">
-        <p class="eyebrow">Model access</p><h2>
-          Choose a supported<br />model provider
-        </h2><p>
-          Use your own supported model-provider access. Review provider settings
-          before sharing assessment context.
-        </p><div class="hero-pills">
-          <span>Bring your access</span><span>Local host execution</span>
+    <div class="cost-ledger">
+      <div>
+        <div>
+          <h3>Kifaru license</h3>
+          <p>The proposed plans cover the workbench. They don’t include model usage.</p>
         </div>
       </div>
-    </div>
-  </section>
-  <section
-    class="section site-container cost-story"
-    aria-labelledby="cost-heading"
-  >
-    <div>
-      <p class="eyebrow">Two separate costs</p><h2 id="cost-heading">
-        Licensing and model usage
-      </h2><p>
-        The proposed plans don’t include tokens. What you pay per assessment
-        depends on your provider, your model, and how much you use it.
-      </p>
-    </div><div class="cost-ledger">
       <div>
-        <span class="ledger-icon" aria-hidden="true">◇</span><div>
-          <h3>Kifaru → Bastco</h3><p>
-            The proposed license covers the security harness.
-          </p>
+        <div>
+          <h3>Model costs</h3>
+          <p>Your provider bills for inference. If you run a local model, you supply the compute.</p>
         </div>
-      </div><div>
-        <span class="ledger-icon" aria-hidden="true">⌁</span><div>
-          <h3>Model usage → your provider</h3><p>
-            Your provider bills you for inference under its own terms. Local
-            models use your own compute.
-          </p>
-        </div>
-      </div><p class="small-note">
-        Usage budgets are reactive estimates, not guaranteed provider-side
-        spending caps.
-      </p>
+      </div>
+      <p class="small-note">Usage budgets track reported consumption. They don’t cap provider charges.</p>
     </div>
   </section>
-  <PricingPreview />
-  <section id="boundaries" class="section site-container">
+
+  <section id="boundaries" class="site-container" aria-labelledby="limits-heading">
     <div class="boundary-panel">
       <div>
-        <p class="eyebrow">Operating boundaries</p><h2>
-          Local-first.<br />Not sandboxed.
-        </h2>
-      </div><div>
+        <p class="eyebrow">Before you run Kifaru</p>
+        <h2 id="limits-heading">Local execution is not a sandbox</h2>
+      </div>
+      <div>
         <p>
-          Use Kifaru only on targets you are authorized to assess. A selected
-          target or working directory does not create a technical sandbox.
-        </p><details>
-          <summary>Before running an assessment</summary><ul>
-            <li>
-              Tools execute with the local host’s filesystem and network
-              permissions. Use trusted workspaces.
-            </li><li>
-              The local dashboard’s authentication does not isolate agent
-              execution.
-            </li><li>
-              Model-provider requests may transmit assessment context. Review
-              data-handling requirements first.
-            </li><li>
-              Independently review and reproduce model-generated findings.
-            </li>
+          Use Kifaru only for authorized assessments. Tools run with your host’s
+          filesystem and network permissions. Choosing a target or working
+          directory does not create a technical sandbox.
+        </p>
+        <details>
+          <summary>Operator checklist</summary>
+          <ul>
+            <li>Agree on scope and use a trusted workspace.</li>
+            <li>Review requested actions. Signing in to the dashboard does not isolate execution.</li>
+            <li>Check findings independently before reporting them.</li>
           </ul>
-        </details><a class="text-link" href="/security"
-          >Security &amp; responsible use <span aria-hidden="true">↗</span></a>
+        </details>
+        <a class="text-link" href="/security">Security &amp; responsible use <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
+
+  <PricingPreview />
   <section id="demo" class="site-container contact-panel">
     <div>
-      <p class="eyebrow">Talk to Bastco</p><h2>
-        Discuss Kifaru<br />with us
-      </h2><p>
-        Ask about Kifaru or talk to us about red and blue team harnesses,
-        automated scanning, and exposure management.
-      </p><a class="text-link" href="/#services"
-        >Explore Bastco’s security services <span aria-hidden="true">↗</span></a>
-    </div><BookingPanel />
+      <p class="eyebrow">Talk to Bastco</p>
+      <h2>Will Kifaru fit your team?</h2>
+      <p>Tell us how you review findings today. We can discuss model access, deployment, and licensing for your team.</p>
+    </div>
+    <BookingPanel />
   </section>
 </Layout>

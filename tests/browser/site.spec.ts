@@ -288,32 +288,18 @@ test('Workers serves security headers, immutable assets, and a true 404', async 
   expect(calendar.headers()['location']).toBe('/kifaru/');
 });
 
-test('workflow explorer supports buttons and keyboard without making network requests', async ({
-  page,
-}) => {
+test('the product page opens on evidence and links to setup and limits', async ({ page }) => {
   await page.goto('/kifaru/');
-  const explorer = page.locator('[data-workflow]');
-  const evidence = explorer.getByRole('button', { name: '03 Evidence' });
-  await evidence.click();
-  await expect(evidence).toHaveAttribute('aria-pressed', 'true');
-  await expect(
-    explorer.getByRole('heading', { name: 'Check the evidence behind a lead.' }),
-  ).toBeVisible();
-  await expect(explorer.locator('[data-panel]:visible')).toHaveCount(1);
-  await evidence.press('ArrowRight');
-  await expect(
-    explorer.getByRole('button', { name: '04 Report' }),
-  ).toBeFocused();
-  await expect(
-    explorer.getByRole('heading', {
-      name: 'Write a report someone else can review.',
-    }),
-  ).toBeVisible();
-  await page.keyboard.press('Home');
-  await expect(
-    explorer.getByRole('button', { name: '01 Scope' }),
-  ).toBeFocused();
-  await expect(explorer.locator('[data-panel="0"]')).toBeVisible();
+  const workbench = page.getByRole('region', { name: 'Sign-in audit review' });
+  await expect(workbench.getByRole('radio', { name: 'Finding' })).toBeChecked();
+  await expect(workbench.getByText('14 days configured')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Installation guide' })).toHaveAttribute(
+    'href', 'https://install.bastco.org',
+  );
+  await page.getByRole('link', { name: 'Operating limits' }).click();
+  await expect(page).toHaveURL(/#boundaries$/);
+  await page.getByText('Operator checklist').click();
+  await expect(page.getByText('Agree on scope and use a trusted workspace.')).toBeVisible();
 });
 
 test('proposed pricing shows annual totals and remains explicitly non-purchasable', async ({
@@ -348,8 +334,9 @@ test('workflow and proposed pricing remain readable without JavaScript', async (
   try {
     const page = await context.newPage();
     await page.goto('http://127.0.0.1:4322/kifaru/');
-    await expect(page.locator('[data-panel]:visible')).toHaveCount(4);
-    await expect(page.locator('.workflow-controls')).toBeHidden();
+    const workbench = page.locator('#workflow');
+    await workbench.getByRole('radio', { name: 'Finding' }).press('ArrowRight');
+    await expect(workbench.getByText('Reviewer handoff')).toBeVisible();
     await expect(page.locator('.billing-toggle')).toBeHidden();
     await expect(page.locator('[data-monthly]')).toHaveText([
       '$0',
@@ -357,7 +344,7 @@ test('workflow and proposed pricing remain readable without JavaScript', async (
       '$79',
     ]);
     await expect(
-      page.getByRole('link', { name: /Explore installation/ }),
+      page.getByRole('link', { name: 'Installation guide' }),
     ).toBeVisible();
   } finally {
     await context.close();

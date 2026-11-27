@@ -1,4 +1,12 @@
-<section class="console" id="kifaru" tabindex="-1" aria-labelledby="demo-title">
+---
+interface Props {
+  id: string;
+  initialView: 'task' | 'finding';
+}
+const { id, initialView } = Astro.props;
+---
+
+<section class="console" id={id} tabindex="-1" aria-labelledby="demo-title">
   <header class="bar">
     <span class="wordmark"><span class="mark" aria-hidden="true">K</span> Kifaru <span class="divider">/</span> Workbench</span>
     <span class="tag">Interactive demo</span>
@@ -10,8 +18,8 @@
   </div>
   <fieldset class="switcher">
     <legend class="sr-only">Workbench view</legend>
-    <label><input type="radio" name="demo-view" value="task" checked />Task</label>
-    <label><input type="radio" name="demo-view" value="finding" />Finding</label>
+    <label><input type="radio" name="demo-view" value="task" checked={initialView === 'task'} />Task</label>
+    <label><input type="radio" name="demo-view" value="finding" checked={initialView === 'finding'} />Finding</label>
     <label><input type="radio" name="demo-view" value="report" />Report</label>
   </fieldset>
 

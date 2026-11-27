@@ -1,22 +1,37 @@
 ---
 import ProductShowcase from './ProductShowcase.astro';
+
+interface Props {
+  productPage?: boolean;
+}
+const { productPage = false } = Astro.props;
 ---
 
 <section class="hero showcase-hero" aria-labelledby="showcase-title">
   <div class="site-container showcase-layout">
     <div class="intro">
-      <p class="eyebrow">The Kifaru workbench</p>
+      <p class="eyebrow">{productPage ? 'A BASTCO PRODUCT' : 'The Kifaru workbench'}</p>
       <h1 id="showcase-title">Kifaru, your<br /><em>AI red teammate.</em></h1>
       <p class="hero-description">
-        Ask a question about an authorized assessment. Follow Kifaru’s work,
-        inspect the evidence, and decide what belongs in the report.
+        {productPage
+          ? 'Work in the terminal or the local workbench. Open a finding to see the records behind it, then decide what your team can report.'
+          : 'Ask a question about an authorized assessment. Follow Kifaru’s work, inspect the evidence, and decide what belongs in the report.'}
       </p>
       <div class="actions">
-        <a class="button button-primary" href="#kifaru">Try the demo <span aria-hidden="true">↓</span></a>
-        <a class="text-link" href="/kifaru">Explore Kifaru <span aria-hidden="true">→</span></a>
+        {productPage ? (
+          <>
+            <a class="button button-primary" href="https://install.bastco.org">Installation guide <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#workflow">Inspect the finding <span aria-hidden="true">↓</span></a>
+          </>
+        ) : (
+          <>
+            <a class="button button-primary" href="#kifaru">Try the demo <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="/kifaru">Explore Kifaru <span aria-hidden="true">→</span></a>
+          </>
+        )}
       </div>
     </div>
-    <ProductShowcase />
+    <ProductShowcase id={productPage ? 'workflow' : 'kifaru'} initialView={productPage ? 'finding' : 'task'} />
   </div>
 </section>
 

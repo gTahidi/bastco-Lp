@@ -158,8 +158,8 @@ Cal.com. No booking credentials belong in this codebase.
   reading layouts. Service-detail routes retain their dark theme.
 - `src/components/blog/`, `src/layouts/BlogPostLayout.astro`: research cards,
   publication metadata, preserved authorship, and readable long-form content.
-- `src/components/WorkbenchPreview.astro`: keyboard-accessible, simulated workflow;
-  all four stages remain readable without JavaScript.
+- `src/components/ProductShowcase.astro`: interactive sample workbench. The homepage
+  opens the task; the product page opens its finding. All views work without JavaScript.
 - `src/components/PricingPreview.astro`: explicitly proposed Community/Pro/Team
   pricing, with monthly/annual totals and enterprise contact only. This is not a
   checkout, license activation flow, or finalized product offer.
